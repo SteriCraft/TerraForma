@@ -2,7 +2,7 @@
           ### - PROJET GAME / interface.h - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 13/06/2012
 */
 
 #ifndef DEF_INTERFACE_H
@@ -10,7 +10,7 @@
 
 #include <SDL_ttf.h>
 
-#define NOMBRE_ITEMS 8
+#define NOMBRE_ITEMS 8 // Nombre d'items disponibles dans le jeu
 
 class InterfaceJeu
 {
@@ -27,7 +27,7 @@ class InterfaceJeu
         void ajouterEnleverBlocInventaire(int typeBloc, bool modifier, bool *ok);
 
     private:
-        SDL_Surface *barreInventaire;
+        SDL_Surface *barreInventaire; // Surface de l'interface
         SDL_Surface *indicateursPerso;
         SDL_Surface *tetePerso;
         SDL_Surface *barreVieUn;
@@ -43,7 +43,7 @@ class InterfaceJeu
         SDL_Surface *imageInventaire;
         SDL_Surface *blocInventaire;
 
-        SDL_Rect positionItems[4];
+        SDL_Rect positionItems[4]; // Position des différentes surfaces
         SDL_Rect positionBarreInventaire;
         SDL_Rect positionIndicateursPerso;
         SDL_Rect positionTetePerso;
@@ -56,7 +56,7 @@ class InterfaceJeu
         SDL_Rect positionCroix;
         SDL_Rect positionNombreItems;
 
-        int selectionBloc;
+        int selectionBloc; // Variables de contrôle de l'interface
         int inventaire[8][10];
         int selectionInventaire[4];
         int nombreItemsDeux[8][10];

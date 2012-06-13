@@ -2,7 +2,7 @@
           ### - PROJET GAME / environnement.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 13/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -59,7 +59,7 @@ void initialisationEnvironnement(SDL_Surface *ecran, Portion_Map world[][PROFOND
         }
     }
 
-    for (int a(0); a < LARGEUR_MONDE; a++)
+    for (int a(0); a < LARGEUR_MONDE; a++) // Libération du premier chunk, en haut de la map
     {
         for (int x(0); x < LARGEUR_PARTIE_MAP; x++)
         {
@@ -80,7 +80,7 @@ void initialisationEnvironnement(SDL_Surface *ecran, Portion_Map world[][PROFOND
         }
     }
 
-    generationCavernes(chunk);
+    generationCavernes(chunk); // Génération des cavernes
 
     for (int x(0); x < LARGEUR_MONDE; x++)
     {
@@ -340,7 +340,7 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
 
                     if ((memX > camera.posCamX - (2 * TAILLE_BLOCK)) && (memX < (camera.posCamX + largeurFenetre) + (2 * TAILLE_BLOCK)))
                     {
-                        if ((memY > camera.posCamY - (2 * TAILLE_BLOCK)) && (memY < (camera.posCamY + hauteurFenetre) + (2 * TAILLE_BLOCK)))
+                        if ((memY > camera.posCamY - (2 * TAILLE_BLOCK)) && (memY < (camera.posCamY + hauteurFenetre) + (2 * TAILLE_BLOCK))) // Vérification de la position des blocs (s'ils sont dans l'écran, on les affiche)
                         {
                             if (chunk[x][y].blocs[a][b].type == TERRE)
                                 SDL_BlitSurface(surfTerre,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
@@ -391,20 +391,20 @@ void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX,
 
                     if (posX > memX && (posX < memX + TAILLE_BLOCK) && posY > memY && (posY < memY + TAILLE_BLOCK))
                     {
-                        if (chunk[x][y].blocs[a][b].type == AIR || casser)
+                        if (chunk[x][y].blocs[a][b].type == AIR || casser) // Si on veut casser un bloc, ou bien qu'on pose un bloc à la place d'un bloc d'AIR, alors on autorise la modification
                         {
                             if (casser)
                             {
-                                interface->ajouterEnleverBlocInventaire(chunk[x][y].blocs[a][b].type, true, &ok);
-                                chunk[x][y].blocs[a][b].type = typeBloc;
+                                interface->ajouterEnleverBlocInventaire(chunk[x][y].blocs[a][b].type, true, &ok); // Modification de la quantité de blocs dans l'inventaire
+                                chunk[x][y].blocs[a][b].type = typeBloc; // Modification du bloc
                             }
                             else
                             {
-                                interface->ajouterEnleverBlocInventaire(typeBloc, false, &ok);
+                                interface->ajouterEnleverBlocInventaire(typeBloc, false, &ok); // Modification de la quantité de blocs dans l'inventaire
 
                                 if (ok)
                                 {
-                                    chunk[x][y].blocs[a][b].type = typeBloc;
+                                    chunk[x][y].blocs[a][b].type = typeBloc; // Modification du bloc
                                 }
                             }
                         }
@@ -415,7 +415,7 @@ void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX,
     }
 }
 
-Portion_Map generationArbres(Portion_Map chunk)
+Portion_Map generationArbres(Portion_Map chunk) // Génération des arbres
 {
     int nombreAlea(0);
     bool end(false);
@@ -426,9 +426,9 @@ Portion_Map generationArbres(Portion_Map chunk)
         {
             nombreAlea = rand() % 50;
 
-            if (nombreAlea < 5 && (chunk.blocs[x][y].type == HERBE || chunk.blocs[x][y].type == TERRE) && chunk.blocs[x][y - 1].type == AIR)
+            if (nombreAlea < 5 && (chunk.blocs[x][y].type == HERBE || chunk.blocs[x][y].type == TERRE) && chunk.blocs[x][y - 1].type == AIR) // L'arbre pousse selon un modèle prédéfini, au dessus d'un bloc d'herbe ou de terre, par-dessus lesquelles il y a de l'air
             {
-                chunk.blocs[x][y].type = TERRE;
+                chunk.blocs[x][y].type = TERRE; // On remplace le bloc situé en dessous de l'arbre par de la terre
                 chunk.blocs[x][y - 1].type = BOIS_NATUREL;
                 chunk.blocs[x][y - 2].type = BOIS_NATUREL;
                 chunk.blocs[x][y - 3].type = BOIS_NATUREL;
@@ -470,14 +470,19 @@ Portion_Map generationArbres(Portion_Map chunk)
         }
     }
 
-    return chunk;
+    return chunk; // On renvoit le chunk modifié, pour qu'il soit pris en compte dans le tableau des chunks
 }
 
-void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
+void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE]) // Génération des cavernes
 {
+    /* La génération des cavernes se fait en suivant la techniques de la courbe aléatoire, de la même façon que la surface de la map.
+    Ainsi, un point de départ est défini aléatoirement dans le monde, et une courbe aléatoire est générée sur une longueur aléatoire elle aussi.
+    L'épaisseur de la caverne est réalisée en même temps, de façon aléatoire mais contrôlée. Contrôlée dans le sens où elle ne peut augmenter ou diminuer
+    que d'un bloc à la fois, pour éviter les incohérences dans le paysage. */
+
     int chunk[LARGEUR_MONDE * LARGEUR_PARTIE_MAP][PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP], courbeX(0), courbeY(0), nombreCavernes(0), longueurCaverne(0), direction(0), epaisseur(0), mem(0), sens(0);
 
-    for (int x(0); x < LARGEUR_MONDE; x++)
+    for (int x(0); x < LARGEUR_MONDE; x++) // Copie du monde dans un tableau simplifié, ne contenant que les blocs
     {
         for (int y(0); y < PROFONDEUR_MONDE; y++)
         {
@@ -491,25 +496,25 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
         }
     }
 
-    nombreCavernes = rand() % 4;
+    nombreCavernes = rand() % 4; // Générations du nombre de cavernes, entre 2 et 6
     nombreCavernes += 2;
 
-    while (nombreCavernes > 0)
+    while (nombreCavernes > 0) // Tant qu'il y a des cavernes à créer, on en créé
     {
-        courbeX = rand() % (LARGEUR_MONDE * LARGEUR_PARTIE_MAP);
+        courbeX = rand() % (LARGEUR_MONDE * LARGEUR_PARTIE_MAP); // Définition du point de départ de la courbe
         courbeY = rand() % (PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP);
 
-        longueurCaverne = rand() % 80;
+        longueurCaverne = rand() % 80; // Définition de la longueur de la caverne, entre 50 et 130 blocs (soit environ 25-65 m)
         longueurCaverne += 50;
 
-        epaisseur = rand() % 3;
+        epaisseur = rand() % 3; // Définition de l'épaisseur de la caverne, entre 1.5 et 3m (3-6 blocs)
         epaisseur += 3;
 
-        sens = rand() % 2;
+        sens = rand() % 2; // Sens de la caverne, vers lea gauche ou la droite
 
-        if (sens == 0)
+        if (sens == 0) // Dans un sens...
         {
-            while (longueurCaverne > 0)
+            while (longueurCaverne > 0) // Tant que la caverne n'est pas terminée
             {
                 chunk[courbeX][courbeY] = AIR;
 
@@ -557,7 +562,7 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
                 longueurCaverne--;
             }
         }
-        else
+        else // ...ou dans l'autre
         {
             while (longueurCaverne > 0)
             {
@@ -611,7 +616,7 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
         nombreCavernes--;
     }
 
-    for (int x(0); x < LARGEUR_MONDE; x++)
+    for (int x(0); x < LARGEUR_MONDE; x++) // Recopie du tableau simplifié dans le tableau des chunks
     {
         for (int y(0); y < PROFONDEUR_MONDE; y++)
         {
@@ -669,7 +674,7 @@ void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, in
     SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format,119,181,254));
 
     SDL_Rect positionSoleil;
-    SDL_Surface *soleil(IMG_Load("textures/ciel/soleil.png"));
+    SDL_Surface *soleil(IMG_Load("textures/ciel/soleil.png")); // Chargement de la texture du soleil
 
     positionSoleil.x = largeurFenetre / 4;
     positionSoleil.y = hauteurFenetre / 4;
@@ -708,7 +713,7 @@ void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, in
 
 void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
 {
-    for (int a(0); a < LARGEUR_MONDE; a++)
+    for (int a(0); a < LARGEUR_MONDE; a++) // Mise à jour de la terre, au fûr et à mesure les blocs de terre deviennent des blocs d'herbe lorsqu'ils sont exposés à l'air
     {
         for (int b(0); b < PROFONDEUR_MONDE; b++)
         {
@@ -718,7 +723,7 @@ void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
                 {
                     if (world[a][b].blocs[x][y].type == TERRE)
                     {
-                        if (world[a][b].blocs[x][y - 1].type == AIR)
+                        if (world[a][b].blocs[x][y - 1].type == AIR) // Gestion d'un timer, contenu dans la structure de base des blocs
                         {
                             if (world[a][b].blocs[x][y].timer == 0)
                             {

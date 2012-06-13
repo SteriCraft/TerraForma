@@ -2,7 +2,7 @@
             ### - PROJET GAME / personnage.h - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 13/06/2012
 */
 
 #ifndef DEF_PERSONNAGE_H
@@ -11,9 +11,8 @@
 #include <vector>
 #include "controlesCamera.h"
 #include "environnement.h"
-//#include "mobs.h"
 
-#define FACTEUR_DEGATS_CHUTE 250
+#define FACTEUR_DEGATS_CHUTE 250 // Plus cette valeur est importante, plus la chute provoquera des dégâts, par contre la distance à partir de laquelle une chute implique des dégâts n'est pas modifiée
 
 class Personnage
 {
@@ -28,8 +27,8 @@ class Personnage
         bool contact(Portion_Map chunk[][PROFONDEUR_MONDE], int positionPersoX, int positionPersoY);
         void sauter(bool saut, bool okSaut);
         void recupererPosition(int *posX, int *posY);
-        int recupererVie();
-        void changerVie(int nouvelleVie);
+        int changerVie(int modifVie=0);
+        int changerFatigue(int modifFatigue=0);
         void changerPosX(int posX);
         void changerPosY(int posY);
         void changerVitX(int vitX);
@@ -38,7 +37,9 @@ class Personnage
         void changerMasse(int poids);
 
     private:
+        int armure;
         int vie;
+        int fatigue;
         double masse;
         SDL_Surface *texture;
         SDL_Rect positionPerso;

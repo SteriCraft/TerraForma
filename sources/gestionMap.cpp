@@ -1,3 +1,7 @@
+/*
+Les commentaires de ce fichier ne sont pas terminés, en raison de travaux en cours sur le code
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>

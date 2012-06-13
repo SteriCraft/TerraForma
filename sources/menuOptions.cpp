@@ -2,7 +2,7 @@
            ### - PROJET GAME / menuOptions.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 13/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -17,18 +17,18 @@
 
 static Police okReso, resoX, resoY, resoSeparateur, annuler, avertissementReso, decalGauche, decalDroit, fullScreen; // Variables globales au fichier, préparant les polices
 
-static SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png"));
-static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
+static SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png")); // Chargement de la texture du fond d'écran
+static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png")); // Chargement de la texture du curseur
 
 void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int hauteurFenetre)
 {
-    int listeResolutionX[6] = {800, 1280, 1366, 1440, 1680, 1920};
+    int listeResolutionX[6] = {800, 1280, 1366, 1440, 1680, 1920}; // Liste des résolutions disponibles
     int listeResolutionY[6] = {600, 1024, 768, 900, 1050, 1080};
-    int fakeUn(0), fakeDeux(0);
+    int fakeUn(0), fakeDeux(0); // Variables de gestion du code
     bool etatFullScreen(false);
     std::string ligne;
 
-    parametresFenetre(&etatFullScreen, &fakeUn, &fakeDeux, false);
+    parametresFenetre(&etatFullScreen, &fakeUn, &fakeDeux, false); // Récupération des paramètres de la fenêtre
 
     decalGauche.texte = IMG_Load("textures/interface/selectGauche.png"); // Initialisation des textures
     decalDroit.texte = IMG_Load("textures/interface/selectDroit.png");
@@ -38,12 +38,12 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
     positionFondEcran.x = 0;
     positionFondEcran.y = 0;
 
-    ReceptionClavier in;
+    ReceptionClavier in; // Mise à jour du clavier
     memset(&in, 0, sizeof(in));
 
     int tempsPrecedent(0), tempsActuel = (0), i(0), largeurFenetreMem(largeurFenetre), hauteurFenetreMem(hauteurFenetre);
 
-    while (listeResolutionX[i] != largeurFenetre)
+    while (listeResolutionX[i] != largeurFenetre) // Détermination de la résolution en vigueur
     {
         i++;
     }
@@ -88,10 +88,10 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
         fullScreen.couleurTexte.r = 255;
     }
 
-    ligne = converteurIntToString(largeurFenetreMem); // Détermination de la résolution utilisée
+    ligne = convertisseurIntToString(largeurFenetreMem); // Détermination de la résolution utilisée
     resoX.texte = TTF_RenderText_Blended(police, ligne.c_str(), resoX.couleurTexte);
 
-    ligne = converteurIntToString(hauteurFenetreMem);
+    ligne = convertisseurIntToString(hauteurFenetreMem);
     resoY.texte = TTF_RenderText_Blended(police, ligne.c_str(), resoY.couleurTexte);
 
     okReso.texte = TTF_RenderText_Blended(police, "OK", okReso.couleurTexte); // Initialisation des textes
@@ -133,7 +133,7 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
         {
             if ((in.sourisX > annuler.positionTexte.x) && (in.sourisX < (annuler.positionTexte.x + annuler.texte->w)) && (in.sourisY > annuler.positionTexte.y) && (in.sourisY < (annuler.positionTexte.y + annuler.texte->h)))
             {
-                break;
+                break; // Quitter le menu
             }
 
             else if ((in.sourisX > okReso.positionTexte.x) && (in.sourisX < (okReso.positionTexte.x + okReso.texte->w)) && (in.sourisY > okReso.positionTexte.y) && (in.sourisY < (okReso.positionTexte.y + okReso.texte->h)))
@@ -181,13 +181,13 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
         tempsActuel = SDL_GetTicks();
         if (tempsActuel - tempsPrecedent > 16) // Mise à jour de l'écran
         {
-            ligne = converteurIntToString(largeurFenetreMem);
+            ligne = convertisseurIntToString(largeurFenetreMem);
             resoX.texte = TTF_RenderText_Blended(police, ligne.c_str(), resoX.couleurTexte);
 
-            ligne = converteurIntToString(largeurFenetreMem);
+            ligne = convertisseurIntToString(largeurFenetreMem);
             resoX.texte = TTF_RenderText_Blended(police, ligne.c_str(), resoX.couleurTexte);
 
-            ligne = converteurIntToString(hauteurFenetreMem);
+            ligne = convertisseurIntToString(hauteurFenetreMem);
             resoY.texte = TTF_RenderText_Blended(police, ligne.c_str(), resoY.couleurTexte);
 
             resoX.positionTexte.x = (largeurFenetre / 4) - (resoX.texte->w / 2);
@@ -244,7 +244,7 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
     }
 }
 
-std::string converteurIntToString(int number) // Convertisseur "int" vers "string"
+std::string convertisseurIntToString(int number) // Convertisseur "int" vers "string"
 {
     std::stringstream ss;
     ss << number;

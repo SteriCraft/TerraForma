@@ -2,7 +2,7 @@
            ### - PROJET GAME / interface.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 13/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -60,7 +60,7 @@ InterfaceJeu::InterfaceJeu(int largeurFenetre, int modeJeu) : selectionBloc(HERB
 
     x = largeurFenetre - 565;
 
-    for (int i(0); i < 4; i++)
+    for (int i(0); i < 4; i++) // Positionnements des items de la main (en haut à droite de l'écran)
     {
         positionItems[i].x = x;
         positionItems[i].y = 29;
@@ -68,9 +68,9 @@ InterfaceJeu::InterfaceJeu(int largeurFenetre, int modeJeu) : selectionBloc(HERB
         x += 80;
     }
 
-    chargerTexturesItems();
+    chargerTexturesItems(); // Chargement des textures
 
-    if (modeJeu == 1)
+    if (modeJeu == 1) // Initialisation de l'inventaire en mode Libre
     {
         inventaire[0][0] = HERBE;
         inventaire[0][1] = TERRE;
@@ -83,10 +83,18 @@ InterfaceJeu::InterfaceJeu(int largeurFenetre, int modeJeu) : selectionBloc(HERB
         inventaire[0][8] = AIR;
         inventaire[0][9] = AIR;
         inventaire[0][10] = AIR;
+
+        for (int a(1); a < 8; a++) //
+        {
+            for (int b(0); b < 10; b++)
+            {
+                inventaire[a][b] = AIR;
+            }
+        }
     }
     else
     {
-        for (int a(0); a < 8; a++)
+        for (int a(0); a < 8; a++) // Ou vidage de celui-ci en mode Aventure
         {
             for (int b(0); b < 10; b++)
             {
@@ -95,15 +103,7 @@ InterfaceJeu::InterfaceJeu(int largeurFenetre, int modeJeu) : selectionBloc(HERB
         }
     }
 
-    for (int a(1); a < 8; a++)
-    {
-        for (int b(0); b < 10; b++)
-        {
-            inventaire[a][b] = AIR;
-        }
-    }
-
-    for (int a(0); a < 8; a++)
+    for (int a(0); a < 8; a++) // Initialisation des variables de contrôle de l'inventaire (quantité max des stacks, etc...)
     {
         for (int b(0); b < 10; b++)
         {
@@ -151,13 +151,16 @@ InterfaceJeu::InterfaceJeu(int largeurFenetre, int modeJeu) : selectionBloc(HERB
         }
     }
 
-    selectionInventaire[0] = inventaire[0][0];
-    selectionInventaire[1] = inventaire[0][1];
-    selectionInventaire[2] = inventaire[0][2];
-    selectionInventaire[3] = inventaire[0][5];
+    if (modeJeu == 1)
+    {
+        selectionInventaire[0] = inventaire[0][0]; // Initialisatio de la main en mode Libre
+        selectionInventaire[1] = inventaire[0][1];
+        selectionInventaire[2] = inventaire[0][2];
+        selectionInventaire[3] = inventaire[0][5];
+    }
 }
 
-InterfaceJeu::~InterfaceJeu()
+InterfaceJeu::~InterfaceJeu() // Destructeur de la classe
 {
 }
 
@@ -167,7 +170,7 @@ void InterfaceJeu::afficherInterface(SDL_Surface *ecran, int viePerso) // Affich
     SDL_BlitSurface(indicateursPerso, NULL, ecran, &positionIndicateursPerso);
     SDL_BlitSurface(tetePerso, NULL, ecran, &positionTetePerso);
 
-    if (viePerso >= 80)
+    if (viePerso >= 80) // Affichage du niveau de vie
     {
         SDL_BlitSurface(barreVieUn, NULL, ecran, &positionBarreVie);
     }
@@ -191,7 +194,7 @@ void InterfaceJeu::afficherInterface(SDL_Surface *ecran, int viePerso) // Affich
     SDL_BlitSurface(barreMana, NULL, ecran, &positionBarreMana);
     SDL_BlitSurface(iconeInventaire, NULL, ecran, &positionIconeInventaire);
 
-    for (int i(0); i < 4; i++)
+    for (int i(0); i < 4; i++) // Affichage de la main
     {
         if (selectionInventaire[i] == HERBE)
         {
@@ -230,7 +233,7 @@ void InterfaceJeu::afficherInterface(SDL_Surface *ecran, int viePerso) // Affich
     SDL_BlitSurface(selection, NULL, ecran, &positionSelection);
 }
 
-void InterfaceJeu::chargerTexturesItems()
+void InterfaceJeu::chargerTexturesItems() // Chargement des textures (fonction séparée)
 {
     items[TERRE - 1] = IMG_Load("textures/items/terre.png");
     items[PIERRE - 1] = IMG_Load("textures/items/pierre.png");
@@ -244,7 +247,7 @@ void InterfaceJeu::chargerTexturesItems()
 
 int InterfaceJeu::blocSelectionner() // Sélection de bloc
 {
-    if (selectionBloc == 1)
+    if (selectionBloc == 1) // Récupération du type de bloc sélectionner par le curseur de la main (carré marron)
     {
         return selectionInventaire[0];
     }
@@ -262,13 +265,13 @@ int InterfaceJeu::blocSelectionner() // Sélection de bloc
     }
     else
     {
-        return AIR;
+        return AIR; // En cas d'échec de l'identification, on renvoi de l'air
     }
 }
 
 void InterfaceJeu::changerPositionSelection(bool direction, int largeurFenetre) // Modification de la sélection de bloc
 {
-    if (direction && selectionBloc < 4)
+    if (direction && selectionBloc < 4) // Modification du bloc sélectionner par le curseur de la main
     {
         selectionBloc++;
     }
@@ -277,7 +280,7 @@ void InterfaceJeu::changerPositionSelection(bool direction, int largeurFenetre) 
         selectionBloc--;
     }
 
-    if (selectionBloc == 1)
+    if (selectionBloc == 1) // Et positionnement de ce dernier
     {
         positionSelection.x = largeurFenetre - 566;
     }
@@ -295,17 +298,17 @@ void InterfaceJeu::changerPositionSelection(bool direction, int largeurFenetre) 
     }
 }
 
-void InterfaceJeu::afficherInventaire(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre)
+void InterfaceJeu::afficherInventaire(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre) // Affichage de l'inventaire
 {
-    positionInventaire.x = (largeurFenetre / 2) - (imageInventaire->w / 2);
+    positionInventaire.x = (largeurFenetre / 2) - (imageInventaire->w / 2); // Positionnement de l'inventaire
     positionInventaire.y = (hauteurFenetre / 2) - (imageInventaire->h / 2);
     positionCroix.x = positionInventaire.x + 760;
     positionCroix.y = positionInventaire.y + 25;
 
-    SDL_BlitSurface(imageInventaire, NULL, ecran, &positionInventaire);
+    SDL_BlitSurface(imageInventaire, NULL, ecran, &positionInventaire); // Blitage de l'inventaire
     SDL_BlitSurface(croix, NULL, ecran, &positionCroix);
 
-    for (int x(0); x < 10; x++)
+    for (int x(0); x < 10; x++) // Blitage des blocs qu'il contient, en fonction de leur type (tableau de 8 lignes de 10 colonnes)
     {
         for (int y(0); y < 8; y++)
         {
@@ -354,7 +357,7 @@ void InterfaceJeu::afficherInventaire(SDL_Surface *ecran, int largeurFenetre, in
     }
 }
 
-void InterfaceJeu::testClicInventaire(int posX, int posY)
+void InterfaceJeu::testClicInventaire(int posX, int posY) // Vérification de l'impact des clics dans l'inventaire sur les blocs qu'il contient
 {
     int posBlocX(0), posBlocY(0);
 
@@ -391,7 +394,7 @@ void InterfaceJeu::testClicInventaire(int posX, int posY)
     }
 }
 
-void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteurFenetre, TTF_Font *police, SDL_Surface *ecran)
+void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteurFenetre, TTF_Font *police, SDL_Surface *ecran) // Affichage du nombre de blocs dans les stacks (en mode Aventure uniquement)
 {
     std::string quantiteItems("");
 
@@ -413,7 +416,7 @@ void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteu
                     nombreItemsDeux[x][y] = quantiteMaxItems[x][y];
                 }
 
-                quantiteItems = converteurIntToString(nombreItemsDeux[x][y]);
+                quantiteItems = convertisseurIntToString(nombreItemsDeux[x][y]);
 
                 quantiteItemsPolice.texte = TTF_RenderText_Blended(police, quantiteItems.c_str(), quantiteItemsPolice.couleurTexte);
 
@@ -426,7 +429,7 @@ void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteu
     }
 }
 
-void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, bool *ok)
+void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, bool *ok) // Modification du nombre de blocs dans les stacks de l'inventaire (mode Aventure uniquement)
 {
     int posX(0), posY(0);
     bool trouver(false);

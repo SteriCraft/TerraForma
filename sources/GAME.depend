@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1339519140 source:c:\programmation\développement\game\main.cpp
+1339616293 source:c:\programmation\développement\game\main.cpp
 	<SDL/SDL.h>
 	<SDL_ttf.h>
 	<time.h>
@@ -8,12 +8,12 @@
 	"menuMaps.h"
 	"lecteurFichier.h"
 
-1339588504 c:\programmation\développement\game\controlescamera.h
+1339625953 c:\programmation\développement\game\controlescamera.h
 	<SDL/SDL.h>
 	<SDL_ttf.h>
 	"environnement.h"
 
-1339604097 source:c:\programmation\développement\game\controlescamera.cpp
+1339621964 source:c:\programmation\développement\game\controlescamera.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -28,18 +28,18 @@
 	"mobs.h"
 	"contactsEntitees.h"
 
-1339607531 source:c:\programmation\développement\game\environnement.cpp
+1339625757 source:c:\programmation\développement\game\environnement.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<time.h>
 	"environnement.h"
 	"interface.h"
 
-1339604036 c:\programmation\développement\game\environnement.h
+1339626302 c:\programmation\développement\game\environnement.h
 	<SDL/SDL.h>
 	"interface.h"
 
-1339521158 source:c:\programmation\développement\game\personnage.cpp
+1339626930 source:c:\programmation\développement\game\personnage.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	"personnage.h"
@@ -47,12 +47,12 @@
 	"controlesCamera.h"
 	"tableParametresBloc.h"
 
-1339521166 c:\programmation\développement\game\personnage.h
+1339626974 c:\programmation\développement\game\personnage.h
 	<vector>
 	"controlesCamera.h"
 	"environnement.h"
 
-1338930120 c:\programmation\développement\game\menuprincipal.h
+1339625859 c:\programmation\développement\game\menuprincipal.h
 	<SDL_ttf.h>
 
 1325793194 c:\program files (x86)\codeblocks\sdl\include\sdl_ttf.h
@@ -250,7 +250,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1339229924 source:c:\programmation\développement\game\menuprincipal.cpp
+1339618749 source:c:\programmation\développement\game\menuprincipal.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -259,22 +259,22 @@
 	"controlesCamera.h"
 	"majClavier.h"
 
-1338929215 source:c:\programmation\développement\game\majclavier.cpp
+1339623827 source:c:\programmation\développement\game\majclavier.cpp
 	<SDL/SDL.h>
 	"majClavier.h"
 
-1338930164 c:\programmation\développement\game\majclavier.h
+1339626210 c:\programmation\développement\game\majclavier.h
 	"controlesCamera.h"
 
-1339083773 source:c:\programmation\développement\game\lecteurfichier.cpp
+1339625820 source:c:\programmation\développement\game\lecteurfichier.cpp
 	<iostream>
 	<fstream>
 	<string>
 	"lecteurFichier.h"
 
-1338930226 c:\programmation\développement\game\lecteurfichier.h
+1339626318 c:\programmation\développement\game\lecteurfichier.h
 
-1339293723 source:c:\programmation\développement\game\menuoptions.cpp
+1339626430 source:c:\programmation\développement\game\menuoptions.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -285,24 +285,24 @@
 	"majClavier.h"
 	"lecteurFichier.h"
 
-1338930131 c:\programmation\développement\game\menuoptions.h
+1339625906 c:\programmation\développement\game\menuoptions.h
 	<string>
 
-1339099953 source:c:\programmation\développement\game\tableparametresbloc.cpp
+1339625765 source:c:\programmation\développement\game\tableparametresbloc.cpp
 	"environnement.h"
 
-1338930217 c:\programmation\développement\game\tableparametresbloc.h
+1339626307 c:\programmation\développement\game\tableparametresbloc.h
 
-1339505932 source:c:\programmation\développement\game\joueur.cpp
+1339624747 source:c:\programmation\développement\game\joueur.cpp
 	"joueur.h"
 
-1339505846 c:\programmation\développement\game\joueur.h
+1339626226 c:\programmation\développement\game\joueur.h
 	"personnage.h"
 
 1338621315 c:\programmation\développement\game\pnj.h
 	"personnage.h"
 
-1339603736 source:c:\programmation\développement\game\interface.cpp
+1339626393 source:c:\programmation\développement\game\interface.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -312,17 +312,17 @@
 	"environnement.h"
 	"menuOptions.h"
 
-1339607426 c:\programmation\développement\game\interface.h
+1339626201 c:\programmation\développement\game\interface.h
 	<SDL_ttf.h>
 
-1339293396 source:c:\programmation\développement\game\menumaps.cpp
+1339619827 source:c:\programmation\développement\game\menumaps.cpp
 	<SDL_image.h>
 	"menuPrincipal.h"
 	"menuMaps.h"
 	"majClavier.h"
 	"gestionMap.h"
 
-1339091187 c:\programmation\développement\game\menumaps.h
+1339625893 c:\programmation\développement\game\menumaps.h
 
 1339083740 source:c:\programmation\développement\game\map.cpp
 	<iostream>
@@ -333,11 +333,11 @@
 1339088132 c:\programmation\développement\game\map.h
 	"environnement.h"
 
-1339293361 c:\programmation\développement\game\gestionmap.h
+1339626247 c:\programmation\développement\game\gestionmap.h
 	<SDL_ttf.h>
 	"environnement.h"
 
-1339293234 source:c:\programmation\développement\game\gestionmap.cpp
+1339624763 source:c:\programmation\développement\game\gestionmap.cpp
 	<iostream>
 	<fstream>
 	<string>
@@ -345,9 +345,9 @@
 	"gestionMap.h"
 	"controlesCamera.h"
 
-1339294730 c:\programmation\développement\game\menumort.h
+1339625964 c:\programmation\développement\game\menumort.h
 
-1339294870 source:c:\programmation\développement\game\menumort.cpp
+1339625996 source:c:\programmation\développement\game\menumort.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -355,18 +355,18 @@
 	"menuPrincipal.h"
 	"majClavier.h"
 
-1339513141 source:c:\programmation\développement\game\mobs.cpp
+1339626016 source:c:\programmation\développement\game\mobs.cpp
 	"mobs.h"
 
-1339513148 c:\programmation\développement\game\mobs.h
+1339626238 c:\programmation\développement\game\mobs.h
 	"personnage.h"
 
-1339513512 source:c:\programmation\développement\game\contactsentitees.cpp
+1339626340 source:c:\programmation\développement\game\contactsentitees.cpp
 	<vector>
 	<math.h>
 	"mobs.h"
 
-1339512726 c:\programmation\développement\game\contactsentitees.h
+1339626328 c:\programmation\développement\game\contactsentitees.h
 	<vector>
 	"mobs.h"
 
