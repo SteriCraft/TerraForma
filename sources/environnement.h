@@ -2,7 +2,7 @@
            ### - PROJET GAME / environnement.h - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 13/06/2012
+      Date du fichier: 05/06/2012
 */
 
 #ifndef DEF_ENVIRONNEMENT_H
@@ -11,13 +11,13 @@
 #include <SDL/SDL.h>
 #include "interface.h"
 
-#define LARGEUR_MONDE 5 // Paramètres de la map
+#define LARGEUR_MONDE 5
 #define PROFONDEUR_MONDE 5
 #define LARGEUR_PARTIE_MAP 32
 #define PROFONDEUR_PARTIE_MAP 32
 #define TAILLE_BLOCK 16
 
-#define AIR 0 // Numération des blocs
+#define AIR 0
 #define HERBE 1
 #define TERRE 2
 #define PIERRE 3
@@ -27,7 +27,7 @@
 #define BOIS_NATUREL 7
 #define FEUILLE 8
 
-#define MAX_HERBE 120 // Quantité maximale de blocs dans un stack, par type
+#define MAX_HERBE 120
 #define MAX_TERRE 100
 #define MAX_PIERRE 70
 #define MAX_CHARBON 80
@@ -36,7 +36,7 @@
 #define MAX_BOIS_NATUREL 60
 #define MAX_FEUILLE 200
 
-typedef struct // Structure de base d'un bloc
+typedef struct
 {
     SDL_Rect positionBloc;
     int type;
@@ -46,14 +46,14 @@ typedef struct // Structure de base d'un bloc
     int casse;
 } BlocBrut;
 
-typedef struct // Structure de base d'un chunk
+typedef struct
 {
     BlocBrut blocs[LARGEUR_PARTIE_MAP][PROFONDEUR_PARTIE_MAP];
     int posX;
     int posY;
 } Portion_Map;
 
-typedef struct Camera // Structure de base de la caméra
+typedef struct Camera
 {
     double posCamX;
     double posCamY;

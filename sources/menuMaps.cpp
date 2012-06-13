@@ -1,19 +1,15 @@
-/*
-Les commentaires de ce fichier ne sont pas terminés, en raison de travaux en cours sur le code
-*/
-
 #include <SDL_image.h>
 #include "menuPrincipal.h"
 #include "menuMaps.h"
 #include "majClavier.h"
 #include "gestionMap.h"
 
-static SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png")); // Chargement de la texture de fond
-static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png")); // Chargement de la texture du curseur
+static SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png"));
+static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
 
-static Police nouvellePartie, chargerPartie, supprimerPartie, annuler; // Polices des surfaces écrites
+static Police nouvellePartie, chargerPartie, supprimerPartie, annuler;
 
-void menuMaps(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int hauteurFenetre, int modeJeu) // Menu de sélectiond des maps
+void menuMaps(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int hauteurFenetre, int modeJeu)
 {
     int tempsActuel(0), tempsPrecedent(0), nombreMaps(0);
 

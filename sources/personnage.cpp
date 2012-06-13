@@ -2,7 +2,7 @@
           ### - PROJET GAME / personnage.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 13/06/2012
+      Date du fichier: 12/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -12,7 +12,7 @@
 #include "controlesCamera.h"
 #include "tableParametresBloc.h"
 
-static SDL_Surface *kevinDroit(IMG_Load("textures/skins/kevin_droit.png")); // Chargement des textures du personnage, en fonction de la direction dans laquelle il va
+static SDL_Surface *kevinDroit(IMG_Load("textures/skins/kevin_droit.png"));
 static SDL_Surface *kevinGauche(IMG_Load("textures/skins/kevin_gauche.png"));
 
 Personnage::Personnage(SDL_Surface *texturePerso, Portion_Map world[][PROFONDEUR_MONDE], Camera *camera, int largeurFenetre, int hauteurFenetre, int viePerso, int massePerso) : vie(viePerso), masse(massePerso), texture(texturePerso) // Constructeur de la classe Personnage, 100 points de vie, 2 points de dégâts infligeables, pas d'expérience
@@ -42,7 +42,7 @@ Personnage::Personnage(SDL_Surface *texturePerso, Portion_Map world[][PROFONDEUR
     camera->posCamY = (coorY * TAILLE_BLOCK) - ((hauteurFenetre / 2) - (texture->h / 2));
 }
 
-Personnage::~Personnage() // Destructeur de la classe
+Personnage::~Personnage()
 {
 }
 
@@ -90,7 +90,7 @@ Camera Personnage::deplacerPersonnage(Portion_Map chunk[][PROFONDEUR_MONDE], dou
         stop = false;
     }
 
-    if (!stop) // S'il n'y a pas de collision, alors les vitesses s'ajoutent aux coordonnées
+    if (!stop)
     {
         coorX += vitesseX;
         camera.posCamX += (vitesseX * TAILLE_BLOCK);
@@ -99,7 +99,7 @@ Camera Personnage::deplacerPersonnage(Portion_Map chunk[][PROFONDEUR_MONDE], dou
         camera.posCamY += (vitesseY * TAILLE_BLOCK);
     }
 
-    if (vitesseX > 0) // Changement de direction de la texture
+    if (vitesseX > 0)
     {
         changerTexture(kevinDroit);
     }
@@ -121,36 +121,41 @@ void Personnage::detecterCollision(Portion_Map chunk[][PROFONDEUR_MONDE], bool *
     int positionPersoX((coorX * TAILLE_BLOCK) + (texture->w / 4)), positionPersoY(((coorY * TAILLE_BLOCK) + texture->h) - 5);
     bool collide(false), touch(false);
 
-    collide = contact(chunk, positionPersoX, positionPersoY); // Détection avancée... (10 points de contacts, testés de façon égale)
+    collide = contact(chunk, positionPersoX, positionPersoY); // Détection avancée... (10 points de contacts)
 
     if (collide) // Réactions si collision...
     {
         *gravity = false;
         *okSaut = true;
 
-        if (!touch && vitesseY > 0.3 && vitesseY <= 0.32) // Dégâts de chute
+        if (!touch && vitesseY > 0.3 && vitesseY <= 0.32)
         {
             changerVie(-15);
+            changerFatigue(-15);
             touch = true;
         }
         else if (!touch && vitesseY > 0.32 && vitesseY <= 0.34)
         {
             changerVie(-30);
+            changerFatigue(-30);
             touch = true;
         }
         else if (!touch && vitesseY > 0.34 && vitesseY <= 0.36)
         {
             changerVie(-50);
+            changerFatigue(-50);
             touch = true;
         }
         else if (!touch && vitesseY > 0.36 && vitesseY <= 0.4)
         {
             changerVie(-80);
+            changerFatigue(-80);
             touch = true;
         }
         else if (!touch && vitesseY > 0.4)
         {
             changerVie(-100);
+            changerFatigue(-100);
             touch = true;
         }
 
@@ -173,28 +178,35 @@ void Personnage::detecterCollision(Portion_Map chunk[][PROFONDEUR_MONDE], bool *
         if (!touch && vitesseY > 0.3 && vitesseY <= 0.32)
         {
             changerVie(-15);
+            changerFatigue(-15);
             touch = true;
         }
         else if (!touch && vitesseY > 0.32 && vitesseY <= 0.34)
         {
             changerVie(-30);
+            changerFatigue(-30);
             touch = true;
         }
         else if (!touch && vitesseY > 0.34 && vitesseY <= 0.36)
         {
             changerVie(-50);
+            changerFatigue(-50);
             touch = true;
         }
         else if (!touch && vitesseY > 0.36 && vitesseY <= 0.4)
         {
             changerVie(-80);
+            changerFatigue(-80);
             touch = true;
         }
         else if (!touch && vitesseY > 0.4)
         {
             changerVie(-100);
+            changerFatigue(-100);
             touch = true;
         }
+
+
 
         vitesseY = 0;
     }
@@ -342,7 +354,7 @@ void Personnage::detecterCollision(Portion_Map chunk[][PROFONDEUR_MONDE], bool *
     }
 }
 
-bool Personnage::contact(Portion_Map chunk[][PROFONDEUR_MONDE], int positionPersoX, int positionPersoY) // Fonction de détection avancée des collisions
+bool Personnage::contact(Portion_Map chunk[][PROFONDEUR_MONDE], int positionPersoX, int positionPersoY) // Fonction de détection avancée de collisions
 {
     bool collide(false);
     int typeBloc(0), chunkX(0), chunkY(0);
@@ -366,7 +378,7 @@ bool Personnage::contact(Portion_Map chunk[][PROFONDEUR_MONDE], int positionPers
         }
     }
 
-    if (testBlocSolide(typeBloc)) // On vérifie si le bloc est solide ou non
+    if (testBlocSolide(typeBloc))
     {
         collide = true;
     }
@@ -376,9 +388,10 @@ bool Personnage::contact(Portion_Map chunk[][PROFONDEUR_MONDE], int positionPers
 
 void Personnage::sauter(bool saut, bool okSaut) // Fonction de saut (en fonction de la masse)
 {
-    if (saut && okSaut)
+    if (saut && okSaut && fatigue > 0)
     {
         vitesseY = -7.0 / masse;
+        changerFatigue(-5);
     }
 }
 
@@ -388,7 +401,7 @@ void Personnage::recupererPosition(int *posX, int *posY) // Renvoi de la positio
     *posY = (coorY * TAILLE_BLOCK) + (texture->h / 2);
 }
 
-int Personnage::changerVie(int modifVie) // Fonction par Babanar (14/06/2012)
+int Personnage::changerVie(int modifVie) // Fonction par Babanar
 {
     if(modifVie>0) // si c'est un gain de vie alors...
     {
@@ -414,7 +427,7 @@ int Personnage::changerVie(int modifVie) // Fonction par Babanar (14/06/2012)
     return vie;
 }
 
-int Personnage::changerFatigue(int modifFatigue) // Fonction par Babanar (14/06/2012)
+int Personnage::changerFatigue(int modifFatigue) // Fonction par Babanar
 {
     if(modifFatigue>0) // si c'est un gain de fatigue alors...
     {
@@ -437,7 +450,7 @@ int Personnage::changerFatigue(int modifFatigue) // Fonction par Babanar (14/06/
 }
 
 
-void Personnage::changerPosX(int posX) // Modification des différents paramètres de la classe
+void Personnage::changerPosX(int posX)
 {
     coorX = posX;
 }

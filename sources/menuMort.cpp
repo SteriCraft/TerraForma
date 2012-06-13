@@ -1,10 +1,3 @@
-/*
-            ### - PROJET GAME / menuMort.cpp - ###
-
-               Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 13/06/2012
-*/
-
 #include <SDL/SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -12,33 +5,33 @@
 #include "menuPrincipal.h"
 #include "majClavier.h"
 
-static Police annonceMort, menu; // Police des surfaces écrites
+static Police annonceMort, menu;
 
-static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png")); // Chargement de la texture du curseur
+static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
 
 void menuMort(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre, TTF_Font *police)
 {
-    ReceptionClavier in; // Mise à jour du clavier
+    ReceptionClavier in;
     memset(&in, 0, sizeof(in));
 
     int tempsActuel(0), tempsPrecedent(0);
 
     SDL_Rect positionCurseur;
 
-    annonceMort.couleurTexte.b = 255; // Couleur du texte
+    annonceMort.couleurTexte.b = 255;
     annonceMort.couleurTexte.g = 0;
     annonceMort.couleurTexte.r = 0;
     menu.couleurTexte.b = 0;
     menu.couleurTexte.g = 255;
     menu.couleurTexte.r = 0;
 
-    police = TTF_OpenFont("textures/interface/policeMenu.ttf", 50); // Chargement de la police (arial, 60 pixels de large)
+    police = TTF_OpenFont("textures/interface/policeMenu.ttf", 50); // Chargement de la police (arial)
     annonceMort.texte = TTF_RenderText_Blended(police, "Vous êtes mort", annonceMort.couleurTexte);
 
-    police = TTF_OpenFont("textures/interface/policeMenu.ttf", 30); // Chargement de la police (arial, 30 pixels de large)
+    police = TTF_OpenFont("textures/interface/policeMenu.ttf", 30); // Chargement de la police (arial)
     menu.texte = TTF_RenderText_Blended(police, "Menu principal", menu.couleurTexte);
 
-    annonceMort.positionTexte.x = (largeurFenetre / 2) - (annonceMort.texte->w / 2); // Positionnements des surfaces écrites
+    annonceMort.positionTexte.x = (largeurFenetre / 2) - (annonceMort.texte->w / 2);
     annonceMort.positionTexte.y = (hauteurFenetre / 4) - (annonceMort.texte->h / 2);
     menu.positionTexte.x = (largeurFenetre / 2) - (menu.texte->w / 2);
     menu.positionTexte.y = ((hauteurFenetre / 4) * 3) - (menu.texte->h / 2);
@@ -53,7 +46,7 @@ void menuMort(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre, TTF_Fo
             break;
         }
 
-        if (in.boutonSouris[SDL_BUTTON_LEFT]) // Tests des clics
+        if (in.boutonSouris[SDL_BUTTON_LEFT])
         {
             if (in.sourisX > menu.positionTexte.x && in.sourisX < menu.positionTexte.x + menu.texte->w)
             {
@@ -64,7 +57,7 @@ void menuMort(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre, TTF_Fo
             }
         }
 
-        positionCurseur.x = in.sourisX; // Positionnement du curseur
+        positionCurseur.x = in.sourisX;
         positionCurseur.y = in.sourisY;
 
         tempsActuel = SDL_GetTicks();

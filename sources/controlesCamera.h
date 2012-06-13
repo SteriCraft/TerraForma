@@ -2,7 +2,7 @@
           ### - PROJET GAME / controlesCamera.h - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 13/06/2012
+      Date du fichier: 05/06/2012
 */
 
 #ifndef DEF_CAMERA_H
@@ -15,7 +15,7 @@
 #define LARGEUR_FENETRE 1680
 #define PROFONDEUR_FENETRE 1050
 
-typedef struct // Structure de la mise à jour clavier
+typedef struct
 {
     bool key[SDLK_LAST];
     bool quit;

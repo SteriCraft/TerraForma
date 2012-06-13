@@ -1,10 +1,3 @@
-/*
-            ### - PROJET GAME / contactsEntitees.cpp - ###
-
-               Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 13/06/2012
-*/
-
 #include <vector>
 #include <math.h>
 #include "mobs.h"

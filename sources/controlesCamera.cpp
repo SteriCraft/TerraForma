@@ -19,11 +19,11 @@
 #include "mobs.h"
 #include "contactsEntitees.h"
 
-static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png")); // Chargement de la texture du curseur
+static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
 
 void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE], TTF_Font *policeTexte)
 {
-    ReceptionClavier in; // Mise à jour du clavier
+    ReceptionClavier in;
     memset(&in, 0, sizeof(in));
 
     SDL_Rect positionCurseur;
@@ -36,13 +36,13 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
     Joueur Kevin(IMG_Load("textures/skins/kevin_gauche.png"), world, &camera, largeurFenetre, hauteurFenetre); // Chargement de la texture du joueur (dossier: //textures/)
 
     std::vector<Troll*> listeTrolls(1);
-    listeTrolls[listeTrolls.size() - 1] = new Troll(IMG_Load("textures/mobs/troll.png"), world, &camera, largeurFenetre, hauteurFenetre); // Liste temporaire de mobs
+    listeTrolls[listeTrolls.size() - 1] = new Troll(IMG_Load("textures/mobs/troll.png"), world, &camera, largeurFenetre, hauteurFenetre);
 
     listeTrolls[0]->recupererPosition(&posPersoX, &posPersoY);
     listeTrolls[0]->changerPosX((posPersoX / TAILLE_BLOCK) - 2);
     listeTrolls[0]->changerPosY((posPersoY / TAILLE_BLOCK) - 2);
 
-    InterfaceJeu interface(largeurFenetre, modeJeu); // Initialisation de l'interface du jeu
+    InterfaceJeu interface(largeurFenetre, modeJeu);
 
     while (!in.key[SDLK_ESCAPE]) // Boucle principale
     {
@@ -63,7 +63,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
             la modification de la position du personnage selon des paramètres décimaux (double), qui modifient
             eux-mêmes la position de la caméra (suivi du personnage)*/
 
-            if (!inventaire) // Si l'inventaire est fermé...
+            if (!inventaire)
             {
                 if (in.key[SDLK_d] && in.key[SDLK_SPACE]) // Déplacements simultanés
                 {
@@ -127,7 +127,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 }
             }
 
-            if (in.boutonSouris[SDL_BUTTON_WHEELDOWN]) // Modification de la sélection de bloc avec la molette
+            if (in.boutonSouris[SDL_BUTTON_WHEELDOWN]) // Modification de la sélection de bloc
             {
                 interface.changerPositionSelection(true, largeurFenetre);
             }
@@ -139,7 +139,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
             {
                 Kevin.recupererPosition(&posPersoX, &posPersoY);
 
-                if (in.sourisX > largeurFenetre - 245 && in.sourisX < largeurFenetre - 213) // Test pour l'ouverture ou la fermerture de l'inventaire
+                if (in.sourisX > largeurFenetre - 245 && in.sourisX < largeurFenetre - 213)
                 {
                     if (in.sourisY > 29 && in.sourisY < 61)
                     {
@@ -158,14 +158,14 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                     }
                 }
 
-                if (inventaire) // Vérification des clic dans l'inventaire (sélection des blocs)
+                if (inventaire)
                 {
                     interface.testClicInventaire(in.sourisX, in.sourisY);
                 }
 
                 if (modeJeu == 0)
                 {
-                    if (verifModifBloc(posPersoX, posPersoY, in.sourisX + camera.posCamX, in.sourisY + camera.posCamY)) // Modification des blocs, avec test de distance entre le bloc et le personnage
+                    if (verifModifBloc(posPersoX, posPersoY, in.sourisX + camera.posCamX, in.sourisY + camera.posCamY))
                     {
                         if (!inventaire)
                         {
@@ -216,14 +216,16 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
             if (tempsPersoActuel - tempsPersoPrecedent >= 2000 && modeJeu == 0)
             {
                 Kevin.recupererPosition(&posPersoX, &posPersoY);
+                if(Kevin.changerVie()==100 || Kevin.changerFatigue() < 50)
+                {
+                    Kevin.changerFatigue(10);
+                }
                 if (contactPersoTroll(listeTrolls, posPersoX, posPersoY))
                 {
                     Kevin.changerVie(-FORCE_TROLL);
                 }
-                else
-                {
+
                     Kevin.changerVie(10);
-                }
 
                 tempsPersoPrecedent = tempsPersoActuel;
             }
@@ -268,17 +270,20 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 }
             }
 
-            for (int mem(listeTrolls.size()); mem > 0; mem--) // Affichage et application de la gravité aux mobs
+            for (int mem(listeTrolls.size()); mem > 0; mem--)
             {
                 listeTrolls[mem - 1]->deplacerPersonnage(world, 0, camera, true, false);
                 listeTrolls[mem - 1]->afficherPersonnage(ecran, camera);
             }
 
-            bliterArbres(ecran, world, camera, largeurFenetre, hauteurFenetre); // Blitage des arbres
+            bliterArbres(ecran, world, camera, largeurFenetre, hauteurFenetre);
 
-            interface.afficherInterface(ecran, Kevin.changerVie()); // Affichage de l'interface
+            if (!inventaire)
+            {
+                interface.afficherInterface(ecran, Kevin.changerVie(), Kevin.changerFatigue());
+            }
 
-            if (inventaire) // Affichage de l'inventaire
+            if (inventaire)
             {
                 interface.afficherInventaire(ecran, largeurFenetre, hauteurFenetre);
 
@@ -288,7 +293,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 }
             }
 
-            SDL_BlitSurface(curseur, NULL, ecran, &positionCurseur); // Affichage du curseur
+            SDL_BlitSurface(curseur, NULL, ecran, &positionCurseur);
 
             SDL_Flip(ecran); // Mise à jour de l'écran toutes les 16 ms
 
@@ -301,7 +306,7 @@ bool verifModifBloc(double posPersoX, double posPersoY, double posSourisX, doubl
 {
     double distance(0);
 
-    distance = sqrt(((posSourisX - posPersoX) * (posSourisX - posPersoX)) + ((posSourisY - posPersoY) * (posSourisY - posPersoY))); // Calcul de la distance
+    distance = sqrt(((posSourisX - posPersoX) * (posSourisX - posPersoX)) + ((posSourisY - posPersoY) * (posSourisY - posPersoY)));
 
     if (distance < 6 * TAILLE_BLOCK)
     {

@@ -2,7 +2,7 @@
           ### - PROJET GAME / majClavier.h - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 13/06/2012
+      Date du fichier: 05/06/2012
 */
 
 #ifndef DEF_MAJ_CLAVIER_H

@@ -2,7 +2,7 @@
             ### - PROJET GAME / personnage.h - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 13/06/2012
+      Date du fichier: 05/06/2012
 */
 
 #ifndef DEF_PERSONNAGE_H
@@ -11,8 +11,9 @@
 #include <vector>
 #include "controlesCamera.h"
 #include "environnement.h"
+//#include "mobs.h"
 
-#define FACTEUR_DEGATS_CHUTE 250 // Plus cette valeur est importante, plus la chute provoquera des dégâts, par contre la distance à partir de laquelle une chute implique des dégâts n'est pas modifiée
+#define FACTEUR_DEGATS_CHUTE 250
 
 class Personnage
 {

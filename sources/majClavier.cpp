@@ -2,7 +2,7 @@
            ### - PROJET GAME / majClavier.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 13/06/2012
+      Date du fichier: 05/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -16,8 +16,7 @@ void majClavier(ReceptionClavier *in) // Fonction de mise à jour du clavier (sim
     in->boutonSouris[SDL_BUTTON_RIGHT] = false;
     in->boutonSouris[SDL_BUTTON_WHEELUP] = false;
     in->boutonSouris[SDL_BUTTON_WHEELDOWN] = false;
-
-	while(SDL_PollEvent(&event)) // Structure classique des events SDL
+	while(SDL_PollEvent(&event))
 	{
 		switch (event.type) // Boucle classique de la SDL
 		{
