@@ -1,1 +1,21 @@
-Première version du README de TerraForma sur GitHub
+TerraForma - Sources
+
+License GPL - Copyright SteriCraft, Babanar - 2012 ©
+
+COMPILATION:
+
+Pour compiler sous linux -> Installer via le gestionnaire de paquet "sdl", "sdl-image", et "sdl-gfx"
+                         -> Préfixer tous les "<SFL_image.h>" et "<SDL_ttf.h>" par "<SDL/..."
+                         -> Dans "Project/Build" -> "settings", supprimer toutes les options de compilations dans "Linker settings" et dans "Search directories"
+                         -> Dans "Linker settings", ajouter : "-lSDL" "-lSDL_image" "-lSDL_ttf"
+(Fonctionne sous Code::Blocs, déjà testé sous ArchLinux par Arnolddu51)
+
+Pour compiler sous Windows -> Compiler le projet Code::Blocks fournit avec les sources
+
+
+REMERCIEMENTS:
+
+Arnolddu51 -> Pour la compilation du projet sous Linux
+Paul Jamon -> Graphismes des items
+Allan Arnaudin -> Graphismes des blocs
+Babanar -> Programmation
