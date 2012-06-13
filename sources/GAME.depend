@@ -1,0 +1,372 @@
+# depslib dependency file v1.0
+1339519140 source:c:\programmation\développement\game\main.cpp
+	<SDL/SDL.h>
+	<SDL_ttf.h>
+	<time.h>
+	"controlesCamera.h"
+	"menuPrincipal.h"
+	"menuMaps.h"
+	"lecteurFichier.h"
+
+1339588504 c:\programmation\développement\game\controlescamera.h
+	<SDL/SDL.h>
+	<SDL_ttf.h>
+	"environnement.h"
+
+1339604097 source:c:\programmation\développement\game\controlescamera.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<math.h>
+	<vector>
+	"controlesCamera.h"
+	"environnement.h"
+	"joueur.h"
+	"majClavier.h"
+	"interface.h"
+	"menuMort.h"
+	"mobs.h"
+	"contactsEntitees.h"
+
+1339607531 source:c:\programmation\développement\game\environnement.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<time.h>
+	"environnement.h"
+	"interface.h"
+
+1339604036 c:\programmation\développement\game\environnement.h
+	<SDL/SDL.h>
+	"interface.h"
+
+1339521158 source:c:\programmation\développement\game\personnage.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	"personnage.h"
+	"environnement.h"
+	"controlesCamera.h"
+	"tableParametresBloc.h"
+
+1339521166 c:\programmation\développement\game\personnage.h
+	<vector>
+	"controlesCamera.h"
+	"environnement.h"
+
+1338930120 c:\programmation\développement\game\menuprincipal.h
+	<SDL_ttf.h>
+
+1325793194 c:\program files (x86)\codeblocks\sdl\include\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1326114588 c:\program files (x86)\codeblocks\sdl\include\sdl_config.h
+	"SDL_platform.h"
+	"SDL_config_dreamcast.h"
+	"SDL_config_macos.h"
+	"SDL_config_macosx.h"
+	"SDL_config_symbian.h"
+	"SDL_config_win32.h"
+	"SDL_config_os2.h"
+	"SDL_config_minimal.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_platform.h
+
+1326114594 c:\program files (x86)\codeblocks\sdl\include\sdl_config_win32.h
+	"SDL_platform.h"
+
+1326114600 c:\program files (x86)\codeblocks\sdl\include\begin_code.h
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\close_code.h
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_keysym.h
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325742240 c:\program files (x86)\codeblocks\sdl\include\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1339229924 source:c:\programmation\développement\game\menuprincipal.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	"menuPrincipal.h"
+	"menuOptions.h"
+	"controlesCamera.h"
+	"majClavier.h"
+
+1338929215 source:c:\programmation\développement\game\majclavier.cpp
+	<SDL/SDL.h>
+	"majClavier.h"
+
+1338930164 c:\programmation\développement\game\majclavier.h
+	"controlesCamera.h"
+
+1339083773 source:c:\programmation\développement\game\lecteurfichier.cpp
+	<iostream>
+	<fstream>
+	<string>
+	"lecteurFichier.h"
+
+1338930226 c:\programmation\développement\game\lecteurfichier.h
+
+1339293723 source:c:\programmation\développement\game\menuoptions.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<string>
+	<sstream>
+	"menuOptions.h"
+	"menuPrincipal.h"
+	"majClavier.h"
+	"lecteurFichier.h"
+
+1338930131 c:\programmation\développement\game\menuoptions.h
+	<string>
+
+1339099953 source:c:\programmation\développement\game\tableparametresbloc.cpp
+	"environnement.h"
+
+1338930217 c:\programmation\développement\game\tableparametresbloc.h
+
+1339505932 source:c:\programmation\développement\game\joueur.cpp
+	"joueur.h"
+
+1339505846 c:\programmation\développement\game\joueur.h
+	"personnage.h"
+
+1338621315 c:\programmation\développement\game\pnj.h
+	"personnage.h"
+
+1339603736 source:c:\programmation\développement\game\interface.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<string>
+	"interface.h"
+	"menuPrincipal.h"
+	"environnement.h"
+	"menuOptions.h"
+
+1339607426 c:\programmation\développement\game\interface.h
+	<SDL_ttf.h>
+
+1339293396 source:c:\programmation\développement\game\menumaps.cpp
+	<SDL_image.h>
+	"menuPrincipal.h"
+	"menuMaps.h"
+	"majClavier.h"
+	"gestionMap.h"
+
+1339091187 c:\programmation\développement\game\menumaps.h
+
+1339083740 source:c:\programmation\développement\game\map.cpp
+	<iostream>
+	<fstream>
+	<string>
+	"map.h"
+
+1339088132 c:\programmation\développement\game\map.h
+	"environnement.h"
+
+1339293361 c:\programmation\développement\game\gestionmap.h
+	<SDL_ttf.h>
+	"environnement.h"
+
+1339293234 source:c:\programmation\développement\game\gestionmap.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<SDL_ttf.h>
+	"gestionMap.h"
+	"controlesCamera.h"
+
+1339294730 c:\programmation\développement\game\menumort.h
+
+1339294870 source:c:\programmation\développement\game\menumort.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	"menuMort.h"
+	"menuPrincipal.h"
+	"majClavier.h"
+
+1339513141 source:c:\programmation\développement\game\mobs.cpp
+	"mobs.h"
+
+1339513148 c:\programmation\développement\game\mobs.h
+	"personnage.h"
+
+1339513512 source:c:\programmation\développement\game\contactsentitees.cpp
+	<vector>
+	<math.h>
+	"mobs.h"
+
+1339512726 c:\programmation\développement\game\contactsentitees.h
+	<vector>
+	"mobs.h"
+
