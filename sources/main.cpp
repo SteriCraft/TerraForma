@@ -69,6 +69,7 @@ int main(int argc, char** argv)
         }
     }
 
+    suppressionSurface();
     SDL_Quit(); // Arrêt de la SDL
     TTF_Quit();
 

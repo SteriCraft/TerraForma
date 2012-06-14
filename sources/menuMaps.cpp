@@ -1,3 +1,7 @@
+/*
+En développement
+*/
+/*
 #include <SDL_image.h>
 #include "menuPrincipal.h"
 #include "menuMaps.h"
@@ -7,7 +11,7 @@
 static SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png"));
 static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
 
-static Police nouvellePartie, chargerPartie, supprimerPartie, annuler;
+static Police nouvellePartie, chargerPartie, annuler;
 
 void menuMaps(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int hauteurFenetre, int modeJeu)
 {
@@ -115,4 +119,11 @@ void menuMaps(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int haut
             tempsPrecedent = tempsActuel;
         }
     }
+
+    SDL_FreeSurface(curseur);
+    SDL_FreeSurface(fondEcran);
+    SDL_FreeSurface(nouvellePartie.texte);
+    SDL_FreeSurface(chargerPartie.texte);
+    SDL_FreeSurface(annuler.texte);
 }
+*/

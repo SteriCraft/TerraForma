@@ -70,5 +70,6 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE]);
 void bliterArbres(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Camera camera, int largeurFenetre, int hauteurFenetre);
 void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE]);
 void majTerre(Portion_Map world[][PROFONDEUR_MONDE]);
+void suppressionSurface();
 
 #endif

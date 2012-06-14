@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1339616847 source:c:\programmation\développement\game\main.cpp
+1339673529 source:c:\programmation\développement\game\main.cpp
 	<SDL/SDL.h>
 	<SDL_ttf.h>
 	<time.h>
@@ -13,7 +13,7 @@
 	<SDL_ttf.h>
 	"environnement.h"
 
-1339628724 source:c:\programmation\développement\game\controlescamera.cpp
+1339676827 source:c:\programmation\développement\game\controlescamera.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -28,18 +28,18 @@
 	"mobs.h"
 	"contactsEntitees.h"
 
-1339629316 source:c:\programmation\développement\game\environnement.cpp
+1339673378 source:c:\programmation\développement\game\environnement.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<time.h>
 	"environnement.h"
 	"interface.h"
 
-1339604036 c:\programmation\développement\game\environnement.h
+1339673289 c:\programmation\développement\game\environnement.h
 	<SDL/SDL.h>
 	"interface.h"
 
-1339627955 source:c:\programmation\développement\game\personnage.cpp
+1339632052 source:c:\programmation\développement\game\personnage.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	"personnage.h"
@@ -47,7 +47,7 @@
 	"controlesCamera.h"
 	"tableParametresBloc.h"
 
-1339625660 c:\programmation\développement\game\personnage.h
+1339631674 c:\programmation\développement\game\personnage.h
 	<vector>
 	"controlesCamera.h"
 	"environnement.h"
@@ -250,7 +250,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1339229924 source:c:\programmation\développement\game\menuprincipal.cpp
+1339671882 source:c:\programmation\développement\game\menuprincipal.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -274,7 +274,7 @@
 
 1338930226 c:\programmation\développement\game\lecteurfichier.h
 
-1339293722 source:c:\programmation\développement\game\menuoptions.cpp
+1339671805 source:c:\programmation\développement\game\menuoptions.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -302,7 +302,7 @@
 1338621315 c:\programmation\développement\game\pnj.h
 	"personnage.h"
 
-1339630070 source:c:\programmation\développement\game\interface.cpp
+1339677091 source:c:\programmation\développement\game\interface.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -312,10 +312,10 @@
 	"environnement.h"
 	"menuOptions.h"
 
-1339624810 c:\programmation\développement\game\interface.h
+1339676025 c:\programmation\développement\game\interface.h
 	<SDL_ttf.h>
 
-1339293396 source:c:\programmation\développement\game\menumaps.cpp
+1339669557 source:c:\programmation\développement\game\menumaps.cpp
 	<SDL_image.h>
 	"menuPrincipal.h"
 	"menuMaps.h"
@@ -347,7 +347,7 @@
 
 1339294730 c:\programmation\développement\game\menumort.h
 
-1339294870 source:c:\programmation\développement\game\menumort.cpp
+1339675685 source:c:\programmation\développement\game\menumort.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>

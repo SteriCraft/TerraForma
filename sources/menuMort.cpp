@@ -5,12 +5,12 @@
 #include "menuPrincipal.h"
 #include "majClavier.h"
 
-static Police annonceMort, menu;
-
-static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
-
 void menuMort(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre, TTF_Font *police)
 {
+    Police annonceMort, menu;
+
+    SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
+
     ReceptionClavier in;
     memset(&in, 0, sizeof(in));
 
@@ -72,5 +72,15 @@ void menuMort(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre, TTF_Fo
 
             tempsPrecedent = tempsActuel;
         }
+        else
+        {
+            SDL_Delay(16 - (tempsActuel - tempsPrecedent));
+        }
     }
+
+    SDL_FreeSurface(annonceMort.texte);
+    SDL_FreeSurface(menu.texte);
+    SDL_FreeSurface(curseur);
+
+    TTF_CloseFont(police);
 }

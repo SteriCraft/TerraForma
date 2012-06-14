@@ -15,13 +15,13 @@
 #include "majClavier.h"
 #include "lecteurFichier.h"
 
-static Police okReso, resoX, resoY, resoSeparateur, annuler, avertissementReso, decalGauche, decalDroit, fullScreen; // Variables globales au fichier, préparant les polices
-
-static SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png"));
-static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
-
 void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int hauteurFenetre)
 {
+    Police okReso, resoX, resoY, resoSeparateur, annuler, avertissementReso, decalGauche, decalDroit, fullScreen; // Variables globales au fichier, préparant les polices
+
+    SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png"));
+    SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
+
     int listeResolutionX[6] = {800, 1280, 1366, 1440, 1680, 1920};
     int listeResolutionY[6] = {600, 1024, 768, 900, 1050, 1080};
     int fakeUn(0), fakeDeux(0);
@@ -181,12 +181,11 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
         tempsActuel = SDL_GetTicks();
         if (tempsActuel - tempsPrecedent > 16) // Mise à jour de l'écran
         {
+            SDL_FreeSurface(resoX.texte);
             ligne = converteurIntToString(largeurFenetreMem);
             resoX.texte = TTF_RenderText_Blended(police, ligne.c_str(), resoX.couleurTexte);
 
-            ligne = converteurIntToString(largeurFenetreMem);
-            resoX.texte = TTF_RenderText_Blended(police, ligne.c_str(), resoX.couleurTexte);
-
+            SDL_FreeSurface(resoY.texte);
             ligne = converteurIntToString(hauteurFenetreMem);
             resoY.texte = TTF_RenderText_Blended(police, ligne.c_str(), resoY.couleurTexte);
 
@@ -212,6 +211,7 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
                 fullScreen.couleurTexte.r = 255;
             }
 
+            SDL_FreeSurface(fullScreen.texte);
             fullScreen.texte = TTF_RenderText_Blended(police, "Plein écran", fullScreen.couleurTexte);
 
             SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0)); // Effacement de l'écran et affichage des surfaces
@@ -241,7 +241,22 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
 
             tempsPrecedent = tempsActuel;
         }
+        else
+        {
+            SDL_Delay(16 - (tempsActuel - tempsPrecedent));
+        }
     }
+
+    SDL_FreeSurface(curseur);
+    SDL_FreeSurface(fondEcran);
+    SDL_FreeSurface(okReso.texte);
+    SDL_FreeSurface(resoSeparateur.texte);
+    SDL_FreeSurface(annuler.texte);
+    SDL_FreeSurface(avertissementReso.texte);
+    SDL_FreeSurface(decalGauche.texte);
+    SDL_FreeSurface(decalDroit.texte);
+
+    TTF_CloseFont(police);
 }
 
 std::string converteurIntToString(int number) // Convertisseur "int" vers "string"

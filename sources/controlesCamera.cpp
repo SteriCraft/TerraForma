@@ -19,10 +19,10 @@
 #include "mobs.h"
 #include "contactsEntitees.h"
 
-static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
-
 void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE], TTF_Font *policeTexte)
 {
+    SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
+
     ReceptionClavier in;
     memset(&in, 0, sizeof(in));
 
@@ -253,7 +253,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
             {
                 if (!inventaire)
                 {
-                    camera = Kevin.deplacerPersonnage(world, 0, camera, true, false);
+                    camera = Kevin.deplacerPersonnage(world, 0, camera, true, false); // Application de la gravité sur le joueur, uniquement si l'inventaire est fermé
                 }
 
                 Kevin.afficherPersonnageCamera(ecran, largeurFenetre, hauteurFenetre);
@@ -299,7 +299,18 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
 
             tempsPrecedent = tempsActuel;
         }
+        else
+        {
+            SDL_Delay(16 - (tempsActuel - tempsPrecedent));
+        }
     }
+
+    for (unsigned int x(0); x < listeTrolls.size(); x++)
+    {
+        delete listeTrolls[x];
+    }
+
+    SDL_FreeSurface(curseur);
 }
 
 bool verifModifBloc(double posPersoX, double posPersoY, double posSourisX, double posSourisY) // Test afin de savoir si le bloc pointé peut être modifié (distance et type)

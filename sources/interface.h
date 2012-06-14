@@ -46,6 +46,15 @@ class InterfaceJeu
         SDL_Surface *items[NOMBRE_ITEMS];
         SDL_Surface *imageInventaire;
         SDL_Surface *blocInventaire;
+        SDL_Surface *itemAir;
+        SDL_Surface *itemHerbe;
+        SDL_Surface *itemTerre;
+        SDL_Surface *itemPierre;
+        SDL_Surface *itemCharbon;
+        SDL_Surface *itemFer;
+        SDL_Surface *itemBois;
+        SDL_Surface *itemBoisNaturel;
+        SDL_Surface *itemFeuille;
 
         SDL_Rect positionItems[4];
         SDL_Rect positionBarreInventaire;

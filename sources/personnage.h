@@ -11,7 +11,6 @@
 #include <vector>
 #include "controlesCamera.h"
 #include "environnement.h"
-//#include "mobs.h"
 
 #define FACTEUR_DEGATS_CHUTE 250
 

@@ -13,13 +13,13 @@
 #include "controlesCamera.h"
 #include "majClavier.h"
 
-static Police modeAventure, modeLibre, options, quitter, copyright, terraforma; // Variables globales au fichier, préparant les polices des deux modes de jeu (affichage de la sélection)
-
-static SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png"));
-static SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
-
 int selectionMenu(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int hauteurFenetre)
 {
+    SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png"));
+    SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
+
+    Police modeAventure, modeLibre, options, quitter, copyright, terraforma;
+
     ReceptionClavier in;
     memset(&in, 0, sizeof(in));
 
@@ -61,7 +61,7 @@ int selectionMenu(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int 
     copyright.texte = TTF_RenderText_Blended(police, "Copyright 2012, Gianni LADISA--LECLERCQ ©, GPL", copyright.couleurTexte);
 
     police = TTF_OpenFont("textures/interface/policeMenu.ttf", 50); // Chargement de la police (arial)
-    terraforma.texte = TTF_RenderText_Blended(police, "TERRAFORMA", terraforma.couleurTexte);
+    terraforma.texte = TTF_RenderText_Blended(police, "TERRAFORMA 0.0.5", terraforma.couleurTexte);
 
     modeAventure.positionTexte.x = (largeurFenetre / 2) - (modeAventure.texte->w / 2); // Positionnement des surfaces écrites
     modeAventure.positionTexte.y = hauteurFenetre / 4;
@@ -147,7 +147,22 @@ int selectionMenu(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int 
             SDL_Flip(ecran); // Mise à jour de l'écran toutes les 16 ms
             tempsPrecedent = tempsActuel;
         }
+        else
+        {
+            SDL_Delay(16 - (tempsActuel - tempsPrecedent));
+        }
     }
+
+    SDL_FreeSurface(curseur);
+    SDL_FreeSurface(fondEcran);
+    SDL_FreeSurface(modeAventure.texte);
+    SDL_FreeSurface(modeLibre.texte);
+    SDL_FreeSurface(options.texte);
+    SDL_FreeSurface(quitter.texte);
+    SDL_FreeSurface(copyright.texte);
+    SDL_FreeSurface(terraforma.texte);
+
+    TTF_CloseFont(police);
 
     return choixMenu; // Renvoi du choix sous la forme d'un int (voir déclaration des variables plus haut)
 }

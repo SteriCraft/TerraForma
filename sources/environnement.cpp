@@ -11,8 +11,6 @@
 #include "environnement.h"
 #include "interface.h"
 
-static SDL_Surface *pierreBackGround(IMG_Load("textures/ciel/backGroundPierre.png")); // Variables globales au fichier, qui stockent les textures des blocs...
-static SDL_Surface *terreBackGround(IMG_Load("textures/ciel/backGroundTerre.png"));
 static SDL_Surface *surfTerre(IMG_Load("textures/blocs/terre.png"));
 static SDL_Surface *surfHerbe(IMG_Load("textures/blocs/herbe.png"));
 static SDL_Surface *surfPierre(IMG_Load("textures/blocs/pierre.png"));
@@ -670,6 +668,8 @@ void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, in
 
     SDL_Rect positionSoleil;
     SDL_Surface *soleil(IMG_Load("textures/ciel/soleil.png"));
+    SDL_Surface *pierreBackGround(IMG_Load("textures/ciel/backGroundPierre.png"));
+    SDL_Surface *terreBackGround(IMG_Load("textures/ciel/backGroundTerre.png"));
 
     positionSoleil.x = largeurFenetre / 4;
     positionSoleil.y = hauteurFenetre / 4;
@@ -704,6 +704,10 @@ void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, in
             }
         }
     }
+
+    SDL_FreeSurface(soleil);
+    SDL_FreeSurface(pierreBackGround);
+    SDL_FreeSurface(terreBackGround);
 }
 
 void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
@@ -758,4 +762,16 @@ void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
             }
         }
     }
+}
+
+void suppressionSurface()
+{
+    SDL_FreeSurface(surfTerre);
+    SDL_FreeSurface(surfHerbe);
+    SDL_FreeSurface(surfPierre);
+    SDL_FreeSurface(surfCharbon);
+    SDL_FreeSurface(surfFer);
+    SDL_FreeSurface(surfBois);
+    SDL_FreeSurface(surfBoisNaturel);
+    SDL_FreeSurface(surfFeuille);
 }

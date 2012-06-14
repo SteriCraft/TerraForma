@@ -1,8 +1,8 @@
 /*
            ### - PROJET GAME / interface.cpp - ###
 
-               Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+               Auteur: SteriCraft / Babanar
+      Date du fichier: 14/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -37,7 +37,15 @@ InterfaceJeu::InterfaceJeu(int largeurFenetre, int modeJeu) : selectionBloc(HERB
     selection = IMG_Load("textures/interface/selectionBloc.png");
     croix = IMG_Load("textures/interface/croix.png");
     imageInventaire = IMG_Load("textures/interface/inventaire.png");
-
+    itemAir = IMG_Load("textures/items/air.png");
+    itemHerbe = IMG_Load("textures/items/herbe.png");
+    itemTerre = IMG_Load("textures/items/terre.png");
+    itemPierre = IMG_Load("textures/items/pierre.png");
+    itemCharbon = IMG_Load("textures/items/charbon.png");
+    itemFer = IMG_Load("textures/items/fer.png");
+    itemBois = IMG_Load("textures/items/bois.png");
+    itemBoisNaturel = IMG_Load("textures/items/bois_naturel.png");
+    itemFeuille = IMG_Load("textures/items/feuille.png");
 
     positionBarreInventaire.x = (largeurFenetre - barreInventaire->w) - 160; // Positionnement de ces dernières
     positionBarreInventaire.y = 0;
@@ -164,6 +172,38 @@ InterfaceJeu::InterfaceJeu(int largeurFenetre, int modeJeu) : selectionBloc(HERB
 
 InterfaceJeu::~InterfaceJeu()
 {
+    SDL_FreeSurface(barreInventaire); // Libération des surfaces pour éviter les fuites mémoires
+    SDL_FreeSurface(indicateursPerso);
+    SDL_FreeSurface(tetePerso);
+    SDL_FreeSurface(barreVieUn);
+    SDL_FreeSurface(barreVieDeux);
+    SDL_FreeSurface(barreVieTrois);
+    SDL_FreeSurface(barreVieQuatre);
+    SDL_FreeSurface(barreVieCinq);
+    SDL_FreeSurface(barreFatigueUn);
+    SDL_FreeSurface(barreFatigueDeux);
+    SDL_FreeSurface(barreFatigueTrois);
+    SDL_FreeSurface(barreFatigueQuatre);
+    SDL_FreeSurface(barreFatigueCinq);
+    SDL_FreeSurface(iconeInventaire);
+    SDL_FreeSurface(selection);
+    SDL_FreeSurface(croix);
+    SDL_FreeSurface(imageInventaire);
+    SDL_FreeSurface(quantiteItemsPolice.texte);
+    SDL_FreeSurface(itemAir);
+    SDL_FreeSurface(itemHerbe);
+    SDL_FreeSurface(itemTerre);
+    SDL_FreeSurface(itemPierre);
+    SDL_FreeSurface(itemCharbon);
+    SDL_FreeSurface(itemFer);
+    SDL_FreeSurface(itemBois);
+    SDL_FreeSurface(itemBoisNaturel);
+    SDL_FreeSurface(itemFeuille);
+
+    for (int x(0); x < NOMBRE_ITEMS; x++)
+    {
+        SDL_FreeSurface(items[x]);
+    }
 }
 
 void InterfaceJeu::afficherInterface(SDL_Surface *ecran, int viePerso, int fatiguePerso) // Affichage de l'interface
@@ -343,44 +383,46 @@ void InterfaceJeu::afficherInventaire(SDL_Surface *ecran, int largeurFenetre, in
 
             if (inventaire[y][x] == AIR)
             {
-                blocInventaire = IMG_Load("textures/items/air.png");
+                blocInventaire = itemAir;
             }
             else if (inventaire[y][x] == HERBE)
             {
-                blocInventaire = IMG_Load("textures/items/herbe.png");
+                blocInventaire = itemHerbe;
             }
             else if (inventaire[y][x] == TERRE)
             {
-                blocInventaire = IMG_Load("textures/items/terre.png");
+                blocInventaire = itemTerre;
             }
             else if (inventaire[y][x] == PIERRE)
             {
-                blocInventaire = IMG_Load("textures/items/pierre.png");
+                blocInventaire = itemPierre;
             }
             else if (inventaire[y][x] == CHARBON)
             {
-                blocInventaire = IMG_Load("textures/items/charbon.png");
+                blocInventaire = itemCharbon;
             }
             else if (inventaire[y][x] == FER)
             {
-                blocInventaire = IMG_Load("textures/items/fer.png");
+                blocInventaire = itemFer;
             }
             else if (inventaire[y][x] == BOIS)
             {
-                blocInventaire = IMG_Load("textures/items/bois.png");
+                blocInventaire = itemBois;
             }
             else if (inventaire[y][x] == BOIS_NATUREL)
             {
-                blocInventaire = IMG_Load("textures/items/bois_naturel.png");
+                blocInventaire = itemBoisNaturel;
             }
             else if (inventaire[y][x] == FEUILLE)
             {
-                blocInventaire = IMG_Load("textures/items/feuille.png");
+                blocInventaire = itemFeuille;
             }
 
             SDL_BlitSurface(blocInventaire, NULL, ecran, &positionBloc);
         }
     }
+
+    //SDL_FreeSurface(blocInventaire);
 }
 
 void InterfaceJeu::testClicInventaire(int posX, int posY)
@@ -430,7 +472,6 @@ void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteu
     quantiteItemsPolice.couleurTexte.b = 255;
     quantiteItemsPolice.couleurTexte.g = 255;
 
-
     for (int x(0); x < 8; x++)
     {
         for (int y(0); y < 10; y++)
@@ -444,6 +485,7 @@ void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteu
 
                 quantiteItems = converteurIntToString(nombreItemsDeux[x][y]);
 
+                SDL_FreeSurface(quantiteItemsPolice.texte);
                 quantiteItemsPolice.texte = TTF_RenderText_Blended(police, quantiteItems.c_str(), quantiteItemsPolice.couleurTexte);
 
                 quantiteItemsPolice.positionTexte.x = (y * TAILLE_BLOCK * 4.3) + (positionInventaire.x + 73) + 6;
@@ -453,6 +495,8 @@ void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteu
             }
         }
     }
+
+    TTF_CloseFont(police);
 }
 
 void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, bool *ok)

@@ -44,6 +44,7 @@ Personnage::Personnage(SDL_Surface *texturePerso, Portion_Map world[][PROFONDEUR
 
 Personnage::~Personnage()
 {
+    SDL_FreeSurface(texture); // Libération des surfaces pour éviter les fuites mémoires
 }
 
 void Personnage::afficherPersonnageCamera(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre)
