@@ -12,10 +12,9 @@ void majClavier(ReceptionClavier *in) // Fonction de mise à jour du clavier (sim
 {
     SDL_Event event;
 
-    in->boutonSouris[SDL_BUTTON_LEFT] = false;
-    in->boutonSouris[SDL_BUTTON_RIGHT] = false;
     in->boutonSouris[SDL_BUTTON_WHEELUP] = false;
     in->boutonSouris[SDL_BUTTON_WHEELDOWN] = false;
+
 	while(SDL_PollEvent(&event))
 	{
 		switch (event.type) // Boucle classique de la SDL

@@ -13,7 +13,7 @@
 	<SDL_ttf.h>
 	"environnement.h"
 
-1339676827 source:c:\programmation\développement\game\controlescamera.cpp
+1339689316 source:c:\programmation\développement\game\controlescamera.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -28,18 +28,18 @@
 	"mobs.h"
 	"contactsEntitees.h"
 
-1339673378 source:c:\programmation\développement\game\environnement.cpp
+1339689490 source:c:\programmation\développement\game\environnement.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<time.h>
 	"environnement.h"
 	"interface.h"
 
-1339673289 c:\programmation\développement\game\environnement.h
+1339687131 c:\programmation\développement\game\environnement.h
 	<SDL/SDL.h>
 	"interface.h"
 
-1339632052 source:c:\programmation\développement\game\personnage.cpp
+1339686593 source:c:\programmation\développement\game\personnage.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	"personnage.h"
@@ -47,7 +47,7 @@
 	"controlesCamera.h"
 	"tableParametresBloc.h"
 
-1339631674 c:\programmation\développement\game\personnage.h
+1339686550 c:\programmation\développement\game\personnage.h
 	<vector>
 	"controlesCamera.h"
 	"environnement.h"
@@ -259,7 +259,7 @@
 	"controlesCamera.h"
 	"majClavier.h"
 
-1338929214 source:c:\programmation\développement\game\majclavier.cpp
+1339687722 source:c:\programmation\développement\game\majclavier.cpp
 	<SDL/SDL.h>
 	"majClavier.h"
 
@@ -302,7 +302,7 @@
 1338621315 c:\programmation\développement\game\pnj.h
 	"personnage.h"
 
-1339677091 source:c:\programmation\développement\game\interface.cpp
+1339688975 source:c:\programmation\développement\game\interface.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -312,7 +312,7 @@
 	"environnement.h"
 	"menuOptions.h"
 
-1339676025 c:\programmation\développement\game\interface.h
+1339688773 c:\programmation\développement\game\interface.h
 	<SDL_ttf.h>
 
 1339669557 source:c:\programmation\développement\game\menumaps.cpp

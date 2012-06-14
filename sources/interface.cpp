@@ -19,6 +19,7 @@ static Police quantiteItemsPolice;
 InterfaceJeu::InterfaceJeu(int largeurFenetre, int modeJeu) : selectionBloc(HERBE) // Constructeur de l'interface en jeu
 {
     int x(0);
+    sac = false;
 
     barreInventaire = IMG_Load("textures/interface/barreInventaire.png"); // Chargement des surfaces pour l'interface
     indicateursPerso = IMG_Load("textures/interface/indicateursPerso.png");
@@ -421,8 +422,6 @@ void InterfaceJeu::afficherInventaire(SDL_Surface *ecran, int largeurFenetre, in
             SDL_BlitSurface(blocInventaire, NULL, ecran, &positionBloc);
         }
     }
-
-    //SDL_FreeSurface(blocInventaire);
 }
 
 void InterfaceJeu::testClicInventaire(int posX, int posY)
@@ -499,14 +498,29 @@ void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteu
     TTF_CloseFont(police);
 }
 
+bool InterfaceJeu::Sac(bool PresenceSac)
+{
+    sac = PresenceSac;
+
+    return sac;
+}
+
 void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, bool *ok)
 {
     int posX(0), posY(0);
     bool trouver(false);
-
+    int placeX;
+    if(sac)// Si il y a un sac
+    {
+        placeX = 8;// Placer 8 piles d'objet (la main et le sac)
+    }
+    else// si il n'y a pas de sac
+    {
+        placeX = 1;//Placer une piles d'objet (la main)
+    }
     if (typeBloc != AIR && modifier)
     {
-        for (int x(0); x < 8; x++)
+        for (int x(0); x < placeX; x++)
         {
             for (int y(0); y < 10; y++)
             {
@@ -527,11 +541,12 @@ void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, boo
 
         if (trouver)
         {
-            nombreItemsDeux[posX][posY]++;
+            nombreItemsDeux[posX][posY]+=10;
         }
+
         else
         {
-            for (int x(0); x < 8; x++)
+            for (int x(0); x < placeX; x++)
             {
                 for (int y(0); y < 10; y++)
                 {
@@ -578,16 +593,16 @@ void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, boo
                     }
                 }
 
-                if (trouver)
-                {
-                    break;
-                }
+            if (trouver)
+            {
+                break;
+            }
             }
         }
     }
     else if (typeBloc != AIR)
     {
-        for (int x(0); x < 8; x++)
+        for (int x(0); x < placeX; x++)
         {
             for (int y(0); y < 10; y++)
             {

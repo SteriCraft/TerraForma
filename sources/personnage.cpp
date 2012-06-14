@@ -12,14 +12,16 @@
 #include "controlesCamera.h"
 #include "tableParametresBloc.h"
 
-static SDL_Surface *kevinDroit(IMG_Load("textures/skins/kevin_droit.png"));
-static SDL_Surface *kevinGauche(IMG_Load("textures/skins/kevin_gauche.png"));
-
 Personnage::Personnage(SDL_Surface *texturePerso, Portion_Map world[][PROFONDEUR_MONDE], Camera *camera, int largeurFenetre, int hauteurFenetre, int viePerso, int massePerso) : vie(viePerso), masse(massePerso), texture(texturePerso) // Constructeur de la classe Personnage, 100 points de vie, 2 points de dégâts infligeables, pas d'expérience
 {
-    int chunkX(0), chunkY(0), blocX(0), blocY(0), memX(0), memY(0); // Variables de travail
+    kevinDroit = IMG_Load("textures/skins/kevin_droit.png");
+    kevinGauche = IMG_Load("textures/skins/kevin_gauche.png");
 
-    coorX = (LARGEUR_MONDE / 2) * LARGEUR_PARTIE_MAP; // Initialisation des variables de travail (localisation de l'emplacement du personnage)
+    int chunkX(0), chunkY(0), blocX(0), blocY(0), memX(0), memY(0); // Variables de travail
+    double x(0);
+
+    x = LARGEUR_MONDE;
+    coorX = (x / 2) * LARGEUR_PARTIE_MAP; // Initialisation des variables de travail (localisation de l'emplacement du personnage)
     coorY = 0;
     armure = 0;
     fatigue = 100;
@@ -44,7 +46,9 @@ Personnage::Personnage(SDL_Surface *texturePerso, Portion_Map world[][PROFONDEUR
 
 Personnage::~Personnage()
 {
-    SDL_FreeSurface(texture); // Libération des surfaces pour éviter les fuites mémoires
+    SDL_FreeSurface(kevinGauche); // Libération des surfaces pour éviter les fuites mémoires
+    SDL_FreeSurface(kevinDroit);
+    SDL_FreeSurface(texture);
 }
 
 void Personnage::afficherPersonnageCamera(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre)

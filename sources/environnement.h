@@ -36,6 +36,15 @@
 #define MAX_BOIS_NATUREL 60
 #define MAX_FEUILLE 200
 
+#define CASSE_HERBE 40
+#define CASSE_TERRE 40
+#define CASSE_PIERRE 300
+#define CASSE_CHARBON 400
+#define CASSE_FER 600
+#define CASSE_BOIS 100
+#define CASSE_BOIS_NATUREL 100
+#define CASSE_FEUILLE 10
+
 typedef struct
 {
     SDL_Rect positionBloc;
@@ -44,6 +53,7 @@ typedef struct
     int coorY;
     int timer;
     int casse;
+    int casseMax;
 } BlocBrut;
 
 typedef struct
@@ -64,7 +74,7 @@ Portion_Map generationSolAleaChunk(SDL_Surface *ecran, Portion_Map chunk, int *a
 Portion_Map generationSousSolAleaChunk(SDL_Surface *ecran, Portion_Map chunk);
 Portion_Map mineraisAleatoiresChunk(Portion_Map chunk);
 void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Camera camera, int largeurFenetre, int hauteurFenetre);
-void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX, int posY, bool casser, InterfaceJeu *interface);
+void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX, int posY, bool casser, InterfaceJeu *interface, bool tester);
 Portion_Map generationArbres(Portion_Map chunk);
 void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE]);
 void bliterArbres(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Camera camera, int largeurFenetre, int hauteurFenetre);

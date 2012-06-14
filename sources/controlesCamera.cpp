@@ -44,6 +44,11 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
 
     InterfaceJeu interface(largeurFenetre, modeJeu);
 
+    if (modeJeu == 1) // En mode libre, le sac est automatiquement activé, permettant de prendre plus de blocs. Cette partie est temporaire, tant que le nombre de blocs est inférieur à 80
+    {
+        interface.Sac(true);
+    }
+
     while (!in.key[SDLK_ESCAPE]) // Boucle principale
     {
         tempsActuel = SDL_GetTicks();
@@ -169,7 +174,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                     {
                         if (!inventaire)
                         {
-                            modifierBloc(world, AIR, in.sourisX + camera.posCamX, in.sourisY + camera.posCamY, true, &interface);
+                            modifierBloc(world, AIR, in.sourisX + camera.posCamX, in.sourisY + camera.posCamY, true, &interface, true);
                         }
                     }
                 }
@@ -177,7 +182,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 {
                     if (!inventaire)
                     {
-                        modifierBloc(world, AIR, in.sourisX + camera.posCamX, in.sourisY + camera.posCamY, true, &interface);
+                        modifierBloc(world, AIR, in.sourisX + camera.posCamX, in.sourisY + camera.posCamY, true, &interface, false);
                     }
                 }
             }
@@ -191,7 +196,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                     {
                         if (!inventaire)
                         {
-                            modifierBloc(world, interface.blocSelectionner(), in.sourisX + camera.posCamX, in.sourisY + camera.posCamY, false, &interface);
+                            modifierBloc(world, interface.blocSelectionner(), in.sourisX + camera.posCamX, in.sourisY + camera.posCamY, false, &interface, true);
                         }
                     }
                 }
@@ -199,7 +204,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 {
                     if (!inventaire)
                     {
-                        modifierBloc(world, interface.blocSelectionner(), in.sourisX + camera.posCamX, in.sourisY + camera.posCamY, false, &interface);
+                        modifierBloc(world, interface.blocSelectionner(), in.sourisX + camera.posCamX, in.sourisY + camera.posCamY, false, &interface, false);
                     }
                 }
             }

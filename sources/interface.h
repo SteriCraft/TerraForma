@@ -25,6 +25,7 @@ class InterfaceJeu
         void testClicInventaire(int posX, int posY);
         void afficherCompteurBlocInventaire(int largeurFenetre, int hauteurFenetre, TTF_Font *police, SDL_Surface *ecran);
         void ajouterEnleverBlocInventaire(int typeBloc, bool modifier, bool *ok);
+        bool Sac(bool PresenceSac);
 
     private:
         SDL_Surface *barreInventaire;
@@ -74,6 +75,7 @@ class InterfaceJeu
         int selectionInventaire[4];
         int nombreItemsDeux[8][10];
         int quantiteMaxItems[8][10];
+        bool sac;
 };
 
 #endif

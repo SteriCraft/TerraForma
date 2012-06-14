@@ -42,6 +42,8 @@ class Personnage
         int fatigue;
         double masse;
         SDL_Surface *texture;
+        SDL_Surface *kevinDroit;
+        SDL_Surface *kevinGauche;
         SDL_Rect positionPerso;
         double coorX;
         double coorY;

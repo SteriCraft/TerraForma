@@ -2,7 +2,7 @@
           ### - PROJET GAME / environnement.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 14/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -19,6 +19,10 @@ static SDL_Surface *surfFer(IMG_Load("textures/blocs/fer.png"));
 static SDL_Surface *surfBois(IMG_Load("textures/blocs/bois.png"));
 static SDL_Surface *surfBoisNaturel(IMG_Load("textures/blocs/bois_naturel.png"));
 static SDL_Surface *surfFeuille(IMG_Load("textures/blocs/feuille.png"));
+static SDL_Surface *casseUn(IMG_Load("textures/items/casseUn.png"));
+static SDL_Surface *casseDeux(IMG_Load("textures/items/casseDeux.png"));
+static SDL_Surface *casseTrois(IMG_Load("textures/items/casseTrois.png"));
+static SDL_Surface *casseQuatre(IMG_Load("textures/items/casseQuatre.png"));
 
 void initialisationEnvironnement(SDL_Surface *ecran, Portion_Map world[][PROFONDEUR_MONDE])
 {
@@ -52,6 +56,7 @@ void initialisationEnvironnement(SDL_Surface *ecran, Portion_Map world[][PROFOND
 
                     chunk[x][y].blocs[a][b].timer = 0;
                     chunk[x][y].blocs[a][b].casse = 0;
+                    chunk[x][y].blocs[a][b].casseMax = 0;
                 }
             }
         }
@@ -341,26 +346,46 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
                         if ((memY > camera.posCamY - (2 * TAILLE_BLOCK)) && (memY < (camera.posCamY + hauteurFenetre) + (2 * TAILLE_BLOCK)))
                         {
                             if (chunk[x][y].blocs[a][b].type == TERRE)
-                                SDL_BlitSurface(surfTerre,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
+                                SDL_BlitSurface(surfTerre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
 
                             else if (chunk[x][y].blocs[a][b].type == HERBE)
-                                SDL_BlitSurface(surfHerbe,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
+                                SDL_BlitSurface(surfHerbe, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
 
                             else if (chunk[x][y].blocs[a][b].type == PIERRE)
-                                SDL_BlitSurface(surfPierre,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
+                                SDL_BlitSurface(surfPierre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
 
                             else if (chunk[x][y].blocs[a][b].type == CHARBON)
-                                SDL_BlitSurface(surfCharbon,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
+                                SDL_BlitSurface(surfCharbon, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
 
                             else if (chunk[x][y].blocs[a][b].type == FER)
-                                SDL_BlitSurface(surfFer,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
+                                SDL_BlitSurface(surfFer, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
 
                             else if (chunk[x][y].blocs[a][b].type == BOIS)
-                                SDL_BlitSurface(surfBois,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
+                                SDL_BlitSurface(surfBois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
 
                             else if (chunk[x][y].blocs[a][b].type == BOIS_NATUREL)
-                                SDL_BlitSurface(surfBoisNaturel,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
+                                SDL_BlitSurface(surfBoisNaturel, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
                         }
+                    }
+
+                    if (chunk[x][y].blocs[a][b].casse == 0)
+                    {
+                    }
+                    else if (chunk[x][y].blocs[a][b].casse < chunk[x][y].blocs[a][b].casseMax / 4)
+                    {
+                        SDL_BlitSurface(casseUn, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                    }
+                    else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 3)
+                    {
+                        SDL_BlitSurface(casseDeux, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                    }
+                    else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 2)
+                    {
+                        SDL_BlitSurface(casseTrois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                    }
+                    else if (chunk[x][y].blocs[a][b].casse < chunk[x][y].blocs[a][b].casseMax)
+                    {
+                        SDL_BlitSurface(casseQuatre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
                     }
 
                     chunk[x][y].blocs[a][b].positionBloc.x = memX;
@@ -371,7 +396,7 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
     }
 }
 
-void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX, int posY, bool casser, InterfaceJeu *interface) // Fonction de modification de bloc (via controlesCamera.cpp)
+void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX, int posY, bool casser, InterfaceJeu *interface, bool tester) // Fonction de modification de bloc (via controlesCamera.cpp)
 {
     int memX(0), memY(0);
     bool ok(false);
@@ -387,20 +412,75 @@ void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX,
                     memX = chunk[x][y].posX + (a * TAILLE_BLOCK);
                     memY = chunk[x][y].posY + (b * TAILLE_BLOCK);
 
+                    if (chunk[x][y].blocs[a][b].type == AIR) // Mise en place de la casse maximale en fonction du bloc
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = 0;
+                    }
+                    else if (chunk[x][y].blocs[a][b].type == HERBE)
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = CASSE_HERBE;
+                    }
+                    else if (chunk[x][y].blocs[a][b].type == PIERRE)
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = CASSE_PIERRE;
+                    }
+                    else if (chunk[x][y].blocs[a][b].type == TERRE)
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = CASSE_TERRE;
+                    }
+                    else if (chunk[x][y].blocs[a][b].type == CHARBON)
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = CASSE_CHARBON;
+                    }
+                    else if (chunk[x][y].blocs[a][b].type == FER)
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = CASSE_FER;
+                    }
+                    else if (chunk[x][y].blocs[a][b].type == BOIS)
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = CASSE_BOIS;
+                    }
+                    else if (chunk[x][y].blocs[a][b].type == BOIS_NATUREL)
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = CASSE_BOIS_NATUREL;
+                    }
+                    else if (chunk[x][y].blocs[a][b].type == FEUILLE)
+                    {
+                        chunk[x][y].blocs[a][b].casseMax = CASSE_FEUILLE;
+                    }
+
                     if (posX > memX && (posX < memX + TAILLE_BLOCK) && posY > memY && (posY < memY + TAILLE_BLOCK))
                     {
                         if (chunk[x][y].blocs[a][b].type == AIR || casser)
                         {
                             if (casser)
                             {
-                                interface->ajouterEnleverBlocInventaire(chunk[x][y].blocs[a][b].type, true, &ok);
-                                chunk[x][y].blocs[a][b].type = typeBloc;
+                                if (tester) // Si on test, c'est que l'on est en mode aventure
+                                {
+                                    if (chunk[x][y].blocs[a][b].casse >= chunk[x][y].blocs[a][b].casseMax)
+                                    {
+                                        interface->ajouterEnleverBlocInventaire(chunk[x][y].blocs[a][b].type, true, &ok);
+                                        chunk[x][y].blocs[a][b].type = typeBloc;
+                                        chunk[x][y].blocs[a][b].casse = 0;
+                                    }
+                                    else
+                                    {
+                                        chunk[x][y].blocs[a][b].casse++;
+                                    }
+                                }
+                                else
+                                {
+                                    chunk[x][y].blocs[a][b].type = typeBloc;
+                                }
                             }
                             else
                             {
-                                interface->ajouterEnleverBlocInventaire(typeBloc, false, &ok);
+                                if (tester)
+                                {
+                                    interface->ajouterEnleverBlocInventaire(typeBloc, false, &ok);
+                                }
 
-                                if (ok)
+                                if (ok || tester)
                                 {
                                     chunk[x][y].blocs[a][b].type = typeBloc;
                                 }
@@ -774,4 +854,8 @@ void suppressionSurface()
     SDL_FreeSurface(surfBois);
     SDL_FreeSurface(surfBoisNaturel);
     SDL_FreeSurface(surfFeuille);
+    SDL_FreeSurface(casseUn);
+    SDL_FreeSurface(casseDeux);
+    SDL_FreeSurface(casseTrois);
+    SDL_FreeSurface(casseQuatre);
 }
