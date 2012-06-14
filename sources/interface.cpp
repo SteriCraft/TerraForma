@@ -541,7 +541,7 @@ void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, boo
 
         if (trouver)
         {
-            nombreItemsDeux[posX][posY]+=10;
+            nombreItemsDeux[posX][posY]++;
         }
 
         else
