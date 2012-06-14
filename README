@@ -17,9 +17,8 @@ Pour compiler sous Windows
 -> Compiler le projet Code::Blocks fournit avec les sources
 
 
-REMERCIEMENTS:
+EQUIPE:
 
-Pat0n75 -> Compilation du projet sous Linux
-Paul Jamon -> Graphismes des items
-Allan Arnaudin -> Graphismes des blocs
-Babanar -> Programmation
+SteriCraft -> Programmation C++, manipulation du projet sous Windows
+Babanar -> Programmation C++, manipulation du projet sous Windows
+Pat0n75 -> Programmation C++, manipulation du projet sous Linux
