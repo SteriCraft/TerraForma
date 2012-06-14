@@ -7,10 +7,10 @@ COMPILATION:
 Pour compiler sous linux
 -> Installer via le gestionnaire de paquet "sdl", "sdl-image", et "sdl-gfx"
 -> Préfixer tous les "<SFL_image.h>" et "<SDL_ttf.h>" par "<SDL/..."
--> Dans "Project/Build" -> "settings", supprimer toutes les options de compilations dans "Linker settings" et dans "Search directories"
+-> Dans "Project/Build" -> "settings", supprimer toutes les options de compilation dans "Linker settings" et dans "Search directories"
 -> Dans "Linker settings", ajouter : "-lSDL" "-lSDL_image" "-lSDL_ttf"
 
-(Fonctionne sous Code::Blocs, déjà testé sous ArchLinux par Arnolddu51)
+(Fonctionne sous Code::Blocs, déjà testé sous ArchLinux par PatOn75)
 
 
 Pour compiler sous Windows
@@ -19,7 +19,7 @@ Pour compiler sous Windows
 
 REMERCIEMENTS:
 
-Arnolddu51 -> Pour la compilation du projet sous Linux
+Pat0n75 -> Compilation du projet sous Linux
 Paul Jamon -> Graphismes des items
 Allan Arnaudin -> Graphismes des blocs
 Babanar -> Programmation
