@@ -363,6 +363,7 @@ void InterfaceJeu::changerPositionSelection(bool direction, int largeurFenetre) 
     {
         positionSelection.x = largeurFenetre - 326;
     }
+    verifierSelection();
 }
 
 void InterfaceJeu::afficherInventaire(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre)
@@ -459,6 +460,7 @@ void InterfaceJeu::testClicInventaire(int posX, int posY)
             }
         }
     }
+    verifierSelection();
 }
 
 void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteurFenetre, TTF_Font *police, SDL_Surface *ecran)
@@ -505,6 +507,23 @@ bool InterfaceJeu::Sac(bool PresenceSac)
     return sac;
 }
 
+void InterfaceJeu::verifierSelection()
+{
+        for(int i=0;i<4;i++)
+    {
+        if(selectionInventaire[i] != AIR)
+        {
+                    for(int l=0;l<4;l++)
+            {
+                if(selectionInventaire[i] == selectionInventaire[l] && i!=l)
+                {
+                    selectionInventaire[l] = AIR;
+                }
+            }
+        }
+    }
+}
+
 void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, bool *ok)
 {
     int posX(0), posY(0);
@@ -542,6 +561,13 @@ void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, boo
         if (trouver)
         {
             nombreItemsDeux[posX][posY]++;
+            for(int i=0;i<4;i++)
+            {
+                if (selectionInventaire[i] == AIR)
+                {
+                    selectionInventaire[i] = typeBloc;
+                }
+            }
         }
 
         else
@@ -589,6 +615,13 @@ void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, boo
                         }
 
                         trouver = true;
+                                    for(int i=0;i<4;i++)
+                        {
+                            if (selectionInventaire[i] == AIR)
+                            {
+                                selectionInventaire[i] = typeBloc;
+                            }
+                        }
                         break;
                     }
                 }
@@ -636,4 +669,5 @@ void InterfaceJeu::ajouterEnleverBlocInventaire(int typeBloc, bool modifier, boo
             *ok = false;
         }
     }
+    verifierSelection();
 }

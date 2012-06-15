@@ -2,15 +2,21 @@
            ### - PROJET GAME / majClavier.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 14/06/2012
 */
 
 #include <SDL/SDL.h>
 #include "majClavier.h"
 
-void majClavier(ReceptionClavier *in) // Fonction de mise à jour du clavier (simplification de SDL_Event)
+void majClavier(ReceptionClavier *in, bool initSouris) // Fonction de mise à jour du clavier (simplification de SDL_Event)
 {
     SDL_Event event;
+
+    if (!initSouris)
+    {
+        in->boutonSouris[SDL_BUTTON_LEFT] = false;
+        in->boutonSouris[SDL_BUTTON_RIGHT] = false;
+    }
 
     in->boutonSouris[SDL_BUTTON_WHEELUP] = false;
     in->boutonSouris[SDL_BUTTON_WHEELDOWN] = false;

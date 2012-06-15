@@ -2,10 +2,10 @@
               ### - PROJET GAME / main.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 12/06/2012
+      Date du fichier: 15/06/2012
 
 
-    Nombre total de ligne du projet: 1860
+    Nombre total de ligne du projet: 3937
 */
 
 #include <SDL/SDL.h>

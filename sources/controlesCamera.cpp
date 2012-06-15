@@ -2,7 +2,7 @@
          ### - PROJET GAME / controlesCamera.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 15/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -49,13 +49,17 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
         interface.Sac(true);
     }
 
+    creerSourceLumiere(world, 80, 80, 3);
+    creerSourceLumiere(world, 80, 120, 6);
+    appliquerLumiere(world);
+
     while (!in.key[SDLK_ESCAPE]) // Boucle principale
     {
         tempsActuel = SDL_GetTicks();
         if (tempsActuel - tempsPrecedent >= 16)
         {
             in.quit = false;
-            majClavier(&in);
+            majClavier(&in, true);
 
             if (in.quit)
             {
@@ -235,7 +239,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 tempsPersoPrecedent = tempsPersoActuel;
             }
 
-            if (tempsBlocActuel - tempsBlocPrecedent >= 500)
+            if (tempsBlocActuel - tempsBlocPrecedent >= 2000)
             {
                 majTerre(world);
 
@@ -280,8 +284,6 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 listeTrolls[mem - 1]->deplacerPersonnage(world, 0, camera, true, false);
                 listeTrolls[mem - 1]->afficherPersonnage(ecran, camera);
             }
-
-            bliterArbres(ecran, world, camera, largeurFenetre, hauteurFenetre);
 
             if (!inventaire)
             {

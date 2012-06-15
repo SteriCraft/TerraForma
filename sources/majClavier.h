@@ -10,6 +10,6 @@
 
 #include "controlesCamera.h"
 
-void majClavier(ReceptionClavier *in);
+void majClavier(ReceptionClavier *in, bool initSouris);
 
 #endif

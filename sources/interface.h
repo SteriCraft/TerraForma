@@ -25,6 +25,7 @@ class InterfaceJeu
         void testClicInventaire(int posX, int posY);
         void afficherCompteurBlocInventaire(int largeurFenetre, int hauteurFenetre, TTF_Font *police, SDL_Surface *ecran);
         void ajouterEnleverBlocInventaire(int typeBloc, bool modifier, bool *ok);
+        void verifierSelection();
         bool Sac(bool PresenceSac);
 
     private:

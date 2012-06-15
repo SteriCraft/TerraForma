@@ -39,7 +39,7 @@ void menuMort(SDL_Surface *ecran, int largeurFenetre, int hauteurFenetre, TTF_Fo
     while (!in.key[SDLK_ESCAPE]) // Boucle de sélection
     {
         in.quit = false;
-        majClavier(&in);
+        majClavier(&in, false);
 
         if (in.quit)
         {

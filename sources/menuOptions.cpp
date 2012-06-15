@@ -122,7 +122,7 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
     while (!in.key[SDLK_ESCAPE]) // Boucle de sélection
     {
         in.quit = false;
-        majClavier(&in);
+        majClavier(&in, false);
 
         if (in.quit)
         {

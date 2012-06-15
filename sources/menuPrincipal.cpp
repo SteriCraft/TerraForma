@@ -2,7 +2,7 @@
           ### - PROJET GAME / menuPrincipal.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 15/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -79,7 +79,7 @@ int selectionMenu(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int 
     while (!in.key[SDLK_ESCAPE]) // Boucle de sélection
     {
         in.quit = false;
-        majClavier(&in);
+        majClavier(&in, false);
 
         if (in.quit)
         {

@@ -1,15 +1,19 @@
 /*
           ### - PROJET GAME / environnement.cpp - ###
 
-               Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 14/06/2012
+               Auteur: SteriCraft
+      Date du fichier: 15/06/2012
 */
 
 #include <SDL/SDL.h>
 #include <SDL_image.h>
 #include <time.h>
+#include <math.h>
+
 #include "environnement.h"
 #include "interface.h"
+
+static Lumiere sourcesLumiere[LARGEUR_MONDE * LARGEUR_PARTIE_MAP][PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP];
 
 static SDL_Surface *surfTerre(IMG_Load("textures/blocs/terre.png"));
 static SDL_Surface *surfHerbe(IMG_Load("textures/blocs/herbe.png"));
@@ -49,16 +53,25 @@ void initialisationEnvironnement(SDL_Surface *ecran, Portion_Map world[][PROFOND
                     chunk[x][y].blocs[a][b].positionBloc.x = (a + (x * 32)) * TAILLE_BLOCK; // Position...
                     chunk[x][y].blocs[a][b].positionBloc.y = (b + (y * 32)) * TAILLE_BLOCK;
 
-                    chunk[x][y].blocs[a][b].coorX = a + (x * LARGEUR_PARTIE_MAP); // Coordonnées absolues...
-                    chunk[x][y].blocs[a][b].coorY = b + (y * PROFONDEUR_PARTIE_MAP);
-
                     chunk[x][y].blocs[a][b].type = 0; // Type de bloc
 
                     chunk[x][y].blocs[a][b].timer = 0;
+
                     chunk[x][y].blocs[a][b].casse = 0;
                     chunk[x][y].blocs[a][b].casseMax = 0;
+
+                    chunk[x][y].blocs[a][b].luminosite = 7;
+                    chunk[x][y].blocs[a][b].sourceLumiere = false;
                 }
             }
+        }
+    }
+
+    for (int x(0); x < LARGEUR_MONDE * LARGEUR_PARTIE_MAP; x++)
+    {
+        for(int y(0); y < PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP; y++)
+        {
+            sourcesLumiere[x][y].puissanceLumiere = 0;
         }
     }
 
@@ -328,6 +341,11 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
 {
     int memX(0), memY(0);
 
+    SDL_Surface *caseLumineuse(0);
+
+    caseLumineuse = SDL_CreateRGBSurface(SDL_HWSURFACE, TAILLE_BLOCK, TAILLE_BLOCK, 32, 0, 0, 0, 0);
+    SDL_FillRect(caseLumineuse, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
+
     for (int x(0); x < LARGEUR_MONDE; x++) // Affichage de la génération à l'écran
     {
         for (int y(0); y < PROFONDEUR_MONDE; y++)
@@ -365,6 +383,9 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
 
                             else if (chunk[x][y].blocs[a][b].type == BOIS_NATUREL)
                                 SDL_BlitSurface(surfBoisNaturel, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                            else if (chunk[x][y].blocs[a][b].type == FEUILLE)
+                                SDL_BlitSurface(surfFeuille, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
                         }
                     }
 
@@ -388,12 +409,103 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
                         SDL_BlitSurface(casseQuatre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
                     }
 
+                    if (chunk[x][y].blocs[a][b].type != AIR)
+                    {
+                        if (chunk[x][y].blocs[a][b].luminosite < 0)
+                        {
+                            chunk[x][y].blocs[a][b].luminosite = 0;
+                        }
+                        else if (chunk[x][y].blocs[a][b].luminosite > 15)
+                        {
+                            chunk[x][y].blocs[a][b].luminosite = 15;
+                        }
+
+                        switch (chunk[x][y].blocs[a][b].luminosite)
+                        {
+                            case 0:
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 1:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 238);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 2:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 221);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 3:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 204);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 4:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 187);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 5:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 170);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 6:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 153);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 7:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 136);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 8:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 119);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 9:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 102);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 10:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 85);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 11:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 68);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 12:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 51);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 13:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 34);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+
+                            case 14:
+                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 17);
+                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                break;
+                        }
+                    }
+
                     chunk[x][y].blocs[a][b].positionBloc.x = memX;
                     chunk[x][y].blocs[a][b].positionBloc.y = memY;
                 }
             }
         }
     }
+
+    SDL_FreeSurface(caseLumineuse);
 }
 
 void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX, int posY, bool casser, InterfaceJeu *interface, bool tester) // Fonction de modification de bloc (via controlesCamera.cpp)
@@ -704,47 +816,13 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
     }
 }
 
-void bliterArbres(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Camera camera, int largeurFenetre, int hauteurFenetre)
-{
-    int memX(0), memY(0);
-
-    for (int x(0); x < LARGEUR_MONDE; x++) // Affichage de la génération à l'écran
-    {
-        for (int y(0); y < PROFONDEUR_MONDE; y++)
-        {
-            for (int a(0); a < LARGEUR_PARTIE_MAP; a++)
-            {
-                for (int b(0); b < PROFONDEUR_PARTIE_MAP; b++)
-                {
-                    memX = chunk[x][y].blocs[a][b].positionBloc.x;
-                    memY = chunk[x][y].blocs[a][b].positionBloc.y;
-                    chunk[x][y].blocs[a][b].positionBloc.x -= camera.posCamX;
-                    chunk[x][y].blocs[a][b].positionBloc.y -= camera.posCamY;
-
-                    if ((memX > camera.posCamX - (2 * TAILLE_BLOCK)) && (memX < (camera.posCamX + largeurFenetre) + (2 * TAILLE_BLOCK)))
-                    {
-                        if ((memY > camera.posCamY - (2 * TAILLE_BLOCK)) && (memY < (camera.posCamY + hauteurFenetre) + (2 * TAILLE_BLOCK)))
-                        {
-                            if (chunk[x][y].blocs[a][b].type == FEUILLE)
-                                SDL_BlitSurface(surfFeuille,NULL,ecran,&chunk[x][y].blocs[a][b].positionBloc);
-                        }
-                    }
-
-                    chunk[x][y].blocs[a][b].positionBloc.x = memX;
-                    chunk[x][y].blocs[a][b].positionBloc.y = memY;
-                }
-            }
-        }
-    }
-}
-
 void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE])
 {
     int chunkX(0), chunkY(0), blocX(0), blocY(0);
 
     SDL_Rect positionBloc;
 
-    SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format,119,181,254));
+    SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 119, 181, 254));
 
     SDL_Rect positionSoleil;
     SDL_Surface *soleil(IMG_Load("textures/ciel/soleil.png"));
@@ -858,4 +936,81 @@ void suppressionSurface()
     SDL_FreeSurface(casseDeux);
     SDL_FreeSurface(casseTrois);
     SDL_FreeSurface(casseQuatre);
+}
+
+void creerSourceLumiere(Portion_Map world[][PROFONDEUR_MONDE], int posX, int posY, int puissance)
+{
+    int chunkX(0), chunkY(0);
+
+    sourcesLumiere[posX][posY].puissanceLumiere = puissance;
+
+    chunkX = posX / LARGEUR_PARTIE_MAP;
+    posX -= chunkX * LARGEUR_PARTIE_MAP;
+    chunkY = posY / LARGEUR_PARTIE_MAP;
+    posY -= chunkY * LARGEUR_PARTIE_MAP;
+
+    world[chunkX][chunkY].blocs[posX][posY].sourceLumiere = true;
+}
+
+void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE])
+{
+    int distance(0);
+    TestSourceLumiere chunk[LARGEUR_MONDE * LARGEUR_PARTIE_MAP][PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP];
+
+    for (int x(0); x < LARGEUR_MONDE; x++)
+    {
+        for (int y(0); y < PROFONDEUR_MONDE; y++)
+        {
+            for (int a(0); a < LARGEUR_PARTIE_MAP; a++)
+            {
+                for (int b(0); b < PROFONDEUR_PARTIE_MAP; b++)
+                {
+                    chunk[a + (x * LARGEUR_PARTIE_MAP)][b + (y * PROFONDEUR_PARTIE_MAP)].luminosite = world[x][y].blocs[a][b].luminosite;
+                    chunk[a + (x * LARGEUR_PARTIE_MAP)][b + (y * PROFONDEUR_PARTIE_MAP)].active = world[x][y].blocs[a][b].sourceLumiere;
+                }
+            }
+        }
+    }
+
+    for (int x(0); x < LARGEUR_MONDE * LARGEUR_PARTIE_MAP; x++)
+    {
+        for (int y(0); y < PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP; y++)
+        {
+            if (chunk[x][y].active)
+            {
+                for (int a(x - 15); a < x + 15; a++)
+                {
+                    for (int b(y - 15); b < y + 15; b++)
+                    {
+                        distance = sqrt((a - x) * (a - x) + (b - y) * (b - y));
+
+                        if (distance < 15 && distance > 0.5)
+                        {
+                            if (chunk[a][b].luminosite + (sourcesLumiere[x][y].puissanceLumiere - log(distance)) > chunk[a][b].luminosite)
+                            {
+                                chunk[a][b].luminosite += sourcesLumiere[x][y].puissanceLumiere - log(distance);
+                            }
+                        }
+                    }
+                }
+
+                chunk[x][y].luminosite += sourcesLumiere[x][y].puissanceLumiere;
+            }
+        }
+    }
+
+    for (int x(0); x < LARGEUR_MONDE; x++)
+    {
+        for (int y(0); y < PROFONDEUR_MONDE; y++)
+        {
+            for (int a(0); a < LARGEUR_PARTIE_MAP; a++)
+            {
+                for (int b(0); b < PROFONDEUR_PARTIE_MAP; b++)
+                {
+                    world[x][y].blocs[a][b].luminosite = chunk[a + (x * LARGEUR_PARTIE_MAP)][b + (y * PROFONDEUR_PARTIE_MAP)].luminosite;
+                    world[x][y].blocs[a][b].sourceLumiere = chunk[a + (x * LARGEUR_PARTIE_MAP)][b + (y * PROFONDEUR_PARTIE_MAP)].active;
+                }
+            }
+        }
+    }
 }

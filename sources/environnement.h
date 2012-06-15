@@ -2,7 +2,7 @@
            ### - PROJET GAME / environnement.h - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 15/06/2012
 */
 
 #ifndef DEF_ENVIRONNEMENT_H
@@ -49,12 +49,17 @@ typedef struct
 {
     SDL_Rect positionBloc;
     int type;
-    int coorX;
-    int coorY;
     int timer;
     int casse;
     int casseMax;
+    int luminosite;
+    bool sourceLumiere;
 } BlocBrut;
+
+typedef struct
+{
+    int puissanceLumiere;
+} Lumiere;
 
 typedef struct
 {
@@ -63,11 +68,17 @@ typedef struct
     int posY;
 } Portion_Map;
 
-typedef struct Camera
+typedef struct
 {
     double posCamX;
     double posCamY;
 } Camera;
+
+typedef struct
+{
+    int luminosite;
+    bool active;
+} TestSourceLumiere;
 
 void initialisationEnvironnement(SDL_Surface *ecran, Portion_Map world[][PROFONDEUR_MONDE]);
 Portion_Map generationSolAleaChunk(SDL_Surface *ecran, Portion_Map chunk, int *a);
@@ -77,9 +88,10 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
 void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX, int posY, bool casser, InterfaceJeu *interface, bool tester);
 Portion_Map generationArbres(Portion_Map chunk);
 void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE]);
-void bliterArbres(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Camera camera, int largeurFenetre, int hauteurFenetre);
 void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE]);
 void majTerre(Portion_Map world[][PROFONDEUR_MONDE]);
 void suppressionSurface();
+void creerSourceLumiere(Portion_Map world[][PROFONDEUR_MONDE], int posX, int posY, int puissance);
+void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE]);
 
 #endif
