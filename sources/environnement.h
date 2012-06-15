@@ -88,10 +88,10 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
 void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX, int posY, bool casser, InterfaceJeu *interface, bool tester);
 Portion_Map generationArbres(Portion_Map chunk);
 void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE]);
-void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE]);
+void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE], int tempsJour);
 void majTerre(Portion_Map world[][PROFONDEUR_MONDE]);
 void suppressionSurface();
 void creerSourceLumiere(Portion_Map world[][PROFONDEUR_MONDE], int posX, int posY, int puissance);
-void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE]);
+void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE], Camera camera, int largeurFenetre, int hauteurFenetre);
 
 #endif

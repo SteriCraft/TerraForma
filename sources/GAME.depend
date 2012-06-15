@@ -13,7 +13,7 @@
 	<SDL_ttf.h>
 	"environnement.h"
 
-1339781980 source:c:\programmation\développement\game\controlescamera.cpp
+1339795320 source:c:\programmation\développement\game\controlescamera.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -28,7 +28,7 @@
 	"mobs.h"
 	"contactsEntitees.h"
 
-1339782239 source:c:\programmation\développement\game\environnement.cpp
+1339795199 source:c:\programmation\développement\game\environnement.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<time.h>
@@ -36,7 +36,7 @@
 	"environnement.h"
 	"interface.h"
 
-1339781715 c:\programmation\développement\game\environnement.h
+1339795203 c:\programmation\développement\game\environnement.h
 	<SDL/SDL.h>
 	"interface.h"
 

@@ -60,7 +60,7 @@ void initialisationEnvironnement(SDL_Surface *ecran, Portion_Map world[][PROFOND
                     chunk[x][y].blocs[a][b].casse = 0;
                     chunk[x][y].blocs[a][b].casseMax = 0;
 
-                    chunk[x][y].blocs[a][b].luminosite = 7;
+                    chunk[x][y].blocs[a][b].luminosite = 0;
                     chunk[x][y].blocs[a][b].sourceLumiere = false;
                 }
             }
@@ -386,115 +386,115 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
 
                             else if (chunk[x][y].blocs[a][b].type == FEUILLE)
                                 SDL_BlitSurface(surfFeuille, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                        }
-                    }
 
-                    if (chunk[x][y].blocs[a][b].casse == 0)
-                    {
-                    }
-                    else if (chunk[x][y].blocs[a][b].casse < chunk[x][y].blocs[a][b].casseMax / 4)
-                    {
-                        SDL_BlitSurface(casseUn, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                    }
-                    else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 3)
-                    {
-                        SDL_BlitSurface(casseDeux, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                    }
-                    else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 2)
-                    {
-                        SDL_BlitSurface(casseTrois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                    }
-                    else if (chunk[x][y].blocs[a][b].casse < chunk[x][y].blocs[a][b].casseMax)
-                    {
-                        SDL_BlitSurface(casseQuatre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                    }
+                            if (chunk[x][y].blocs[a][b].casse == 0)
+                            {}
+                            else if (chunk[x][y].blocs[a][b].casse < chunk[x][y].blocs[a][b].casseMax / 4)
+                            {
+                                SDL_BlitSurface(casseUn, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                            }
+                            else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 3)
+                            {
+                                SDL_BlitSurface(casseDeux, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                            }
+                            else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 2)
+                            {
+                                SDL_BlitSurface(casseTrois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                            }
+                            else if (chunk[x][y].blocs[a][b].casse <= chunk[x][y].blocs[a][b].casseMax)
+                            {
+                                SDL_BlitSurface(casseQuatre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                            }
 
-                    if (chunk[x][y].blocs[a][b].type != AIR)
-                    {
-                        if (chunk[x][y].blocs[a][b].luminosite < 0)
-                        {
-                            chunk[x][y].blocs[a][b].luminosite = 0;
-                        }
-                        else if (chunk[x][y].blocs[a][b].luminosite > 15)
-                        {
-                            chunk[x][y].blocs[a][b].luminosite = 15;
-                        }
+                            if (chunk[x][y].blocs[a][b].type != AIR)
+                            {
+                                if (chunk[x][y].blocs[a][b].luminosite < 0)
+                                {
+                                    chunk[x][y].blocs[a][b].luminosite = 0;
+                                }
+                                else if (chunk[x][y].blocs[a][b].luminosite > 15)
+                                {
+                                    chunk[x][y].blocs[a][b].luminosite = 15;
+                                }
 
-                        switch (chunk[x][y].blocs[a][b].luminosite)
-                        {
-                            case 0:
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                switch (chunk[x][y].blocs[a][b].luminosite)
+                                {
+                                    case 0:
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 1:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 238);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 1:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 238);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 2:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 221);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 2:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 221);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 3:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 204);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 3:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 204);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 4:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 187);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 4:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 187);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 5:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 170);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 5:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 170);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 6:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 153);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 6:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 153);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 7:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 136);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 7:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 136);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 8:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 119);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 8:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 119);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 9:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 102);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 9:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 102);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 10:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 85);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 10:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 85);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 11:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 68);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 11:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 68);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 12:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 51);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 12:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 51);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 13:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 34);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 13:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 34);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
 
-                            case 14:
-                                SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 17);
-                                SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                                break;
+                                    case 14:
+                                        SDL_SetAlpha(caseLumineuse, SDL_SRCALPHA, 17);
+                                        SDL_BlitSurface(caseLumineuse, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                        break;
+                                }
+                            }
+
                         }
                     }
 
@@ -590,9 +590,12 @@ void modifierBloc(Portion_Map chunk[][PROFONDEUR_MONDE], int typeBloc, int posX,
                                 if (tester)
                                 {
                                     interface->ajouterEnleverBlocInventaire(typeBloc, false, &ok);
+                                    if (ok)
+                                    {
+                                        chunk[x][y].blocs[a][b].type = typeBloc;
+                                    }
                                 }
-
-                                if (ok || tester)
+                                else
                                 {
                                     chunk[x][y].blocs[a][b].type = typeBloc;
                                 }
@@ -816,23 +819,58 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
     }
 }
 
-void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE])
+void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, int hauteurFenetre, Portion_Map world[][PROFONDEUR_MONDE], int tempsJour)
 {
     int chunkX(0), chunkY(0), blocX(0), blocY(0);
 
     SDL_Rect positionBloc;
-
-    SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 119, 181, 254));
-
     SDL_Rect positionSoleil;
     SDL_Surface *soleil(IMG_Load("textures/ciel/soleil.png"));
+    SDL_Surface *lune(IMG_Load("textures/ciel/lune.png"));
     SDL_Surface *pierreBackGround(IMG_Load("textures/ciel/backGroundPierre.png"));
     SDL_Surface *terreBackGround(IMG_Load("textures/ciel/backGroundTerre.png"));
 
     positionSoleil.x = largeurFenetre / 4;
     positionSoleil.y = hauteurFenetre / 4;
 
-    SDL_BlitSurface(soleil, NULL, ecran, &positionSoleil);
+    if (tempsJour >= 32400 && tempsJour <= 75600)
+    {
+        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 119, 181, 254));
+        SDL_BlitSurface(soleil, NULL, ecran, &positionSoleil);
+
+        for (int x(0); x < LARGEUR_MONDE; x++)
+        {
+            for (int y(0); y < PROFONDEUR_MONDE; y++)
+            {
+                for (int a(0); a < LARGEUR_PARTIE_MAP; a++)
+                {
+                    for (int b(0); b < PROFONDEUR_PARTIE_MAP; b++)
+                    {
+                        world[x][y].blocs[a][b].luminosite = 15;
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 4, 7, 10));
+        SDL_BlitSurface(lune, NULL, ecran, &positionSoleil);
+
+        for (int x(0); x < LARGEUR_MONDE; x++)
+        {
+            for (int y(0); y < PROFONDEUR_MONDE; y++)
+            {
+                for (int a(0); a < LARGEUR_PARTIE_MAP; a++)
+                {
+                    for (int b(0); b < PROFONDEUR_PARTIE_MAP; b++)
+                    {
+                        world[x][y].blocs[a][b].luminosite = 3;
+                    }
+                }
+            }
+        }
+    }
 
     for (int x(0); x < LARGEUR_MONDE * LARGEUR_PARTIE_MAP * TAILLE_BLOCK; x += TAILLE_BLOCK)
     {
@@ -864,6 +902,7 @@ void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, in
     }
 
     SDL_FreeSurface(soleil);
+    SDL_FreeSurface(lune);
     SDL_FreeSurface(pierreBackGround);
     SDL_FreeSurface(terreBackGround);
 }
@@ -952,9 +991,9 @@ void creerSourceLumiere(Portion_Map world[][PROFONDEUR_MONDE], int posX, int pos
     world[chunkX][chunkY].blocs[posX][posY].sourceLumiere = true;
 }
 
-void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE])
+void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE], Camera camera, int largeurFenetre, int hauteurFenetre)
 {
-    int distance(0);
+    int distance(0), chunkType[LARGEUR_MONDE * LARGEUR_PARTIE_MAP][PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP], somme(0);
     TestSourceLumiere chunk[LARGEUR_MONDE * LARGEUR_PARTIE_MAP][PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP];
 
     for (int x(0); x < LARGEUR_MONDE; x++)
@@ -965,6 +1004,7 @@ void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE])
             {
                 for (int b(0); b < PROFONDEUR_PARTIE_MAP; b++)
                 {
+                    chunkType[a + (x * LARGEUR_PARTIE_MAP)][b + (y * PROFONDEUR_PARTIE_MAP)] = world[x][y].blocs[a][b].type;
                     chunk[a + (x * LARGEUR_PARTIE_MAP)][b + (y * PROFONDEUR_PARTIE_MAP)].luminosite = world[x][y].blocs[a][b].luminosite;
                     chunk[a + (x * LARGEUR_PARTIE_MAP)][b + (y * PROFONDEUR_PARTIE_MAP)].active = world[x][y].blocs[a][b].sourceLumiere;
                 }
@@ -972,29 +1012,64 @@ void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE])
         }
     }
 
-    for (int x(0); x < LARGEUR_MONDE * LARGEUR_PARTIE_MAP; x++)
+    for (int x(3); x < LARGEUR_MONDE * LARGEUR_PARTIE_MAP - 3; x++)
     {
-        for (int y(0); y < PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP; y++)
+        for (int y(3); y < PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP - 3; y++)
         {
-            if (chunk[x][y].active)
+            if ((x * TAILLE_BLOCK > camera.posCamX - (2 * TAILLE_BLOCK)) && (x * TAILLE_BLOCK < (camera.posCamX + largeurFenetre) + (2 * TAILLE_BLOCK)))
             {
-                for (int a(x - 15); a < x + 15; a++)
+                if ((y * TAILLE_BLOCK > camera.posCamY - (2 * TAILLE_BLOCK)) && (y * TAILLE_BLOCK < (camera.posCamY + hauteurFenetre) + (2 * TAILLE_BLOCK)))
                 {
-                    for (int b(y - 15); b < y + 15; b++)
+                    if (chunkType[x][y] != AIR && chunkType[x][y] != FEUILLE)
                     {
-                        distance = sqrt((a - x) * (a - x) + (b - y) * (b - y));
-
-                        if (distance < 15 && distance > 0.5)
+                        if (!chunkType[x][y] == AIR)
                         {
-                            if (chunk[a][b].luminosite + (sourcesLumiere[x][y].puissanceLumiere - log(distance)) > chunk[a][b].luminosite)
+                            somme = 0;
+
+                            for (int a(x - 3); a < x + 3; a++)
                             {
-                                chunk[a][b].luminosite += sourcesLumiere[x][y].puissanceLumiere - log(distance);
+                                for (int b(y - 3); b < y + 3; b++)
+                                {
+                                    distance = sqrt((a - x) * (a - x) + (b - y) * (b - y));
+
+                                    if (distance < 3)
+                                    {
+                                        if (chunkType[a][b] != AIR)
+                                        {
+                                            somme++;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (somme == 25)
+                            {
+                                chunk[x][y].luminosite = 0;
                             }
                         }
                     }
-                }
 
-                chunk[x][y].luminosite += sourcesLumiere[x][y].puissanceLumiere;
+                    /*if (chunk[x][y].active) // Gestion des sources de lumières, à finir
+                    {
+                        for (int a(x - 15); a < x + 15; a++)
+                        {
+                            for (int b(y - 15); b < y + 15; b++)
+                            {
+                                distance = sqrt((a - x) * (a - x) + (b - y) * (b - y));
+
+                                if (distance < 15 && distance > 0.5)
+                                {
+                                    if (chunk[a][b].luminosite + (sourcesLumiere[x][y].puissanceLumiere - log(distance)) > chunk[a][b].luminosite)
+                                    {
+                                        chunk[a][b].luminosite += sourcesLumiere[x][y].puissanceLumiere - log(distance);
+                                    }
+                                }
+                            }
+                        }
+
+                        chunk[x][y].luminosite += sourcesLumiere[x][y].puissanceLumiere;
+                    }*/
+                }
             }
         }
     }

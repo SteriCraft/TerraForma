@@ -7,20 +7,20 @@
 	<File name="contactsEntitees.h" open="1" top="0" tabpos="31">
 		<Cursor position="52" topLine="0" />
 	</File>
-	<File name="controlesCamera.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="458" topLine="0" />
+	<File name="controlesCamera.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="9959" topLine="223" />
 	</File>
 	<File name="controlesCamera.h" open="1" top="0" tabpos="19">
 		<Cursor position="2" topLine="0" />
 	</File>
-	<File name="environnement.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="38807" topLine="957" />
+	<File name="environnement.cpp" open="1" top="1" tabpos="13">
+		<Cursor position="42849" topLine="1047" />
 	</File>
 	<File name="environnement.h" open="1" top="0" tabpos="27">
-		<Cursor position="2495" topLine="53" />
+		<Cursor position="2588" topLine="53" />
 	</File>
 	<File name="gestionMap.cpp" open="1" top="0" tabpos="12">
-		<Cursor position="99" topLine="125" />
+		<Cursor position="3494" topLine="119" />
 	</File>
 	<File name="gestionMap.h" open="1" top="0" tabpos="26">
 		<Cursor position="25" topLine="0" />
@@ -83,7 +83,7 @@
 		<Cursor position="337" topLine="0" />
 	</File>
 	<File name="personnage.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="145" topLine="459" />
+		<Cursor position="5777" topLine="0" />
 	</File>
 	<File name="personnage.h" open="1" top="0" tabpos="23">
 		<Cursor position="1768" topLine="10" />

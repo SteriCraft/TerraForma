@@ -23,6 +23,8 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
 {
     SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
 
+    int tempsJour(40000), tempsJourActuel(0), tempsJourPrecedent(0); // Le temps est figé au matin pour les tests des fonctions de luminosité
+
     ReceptionClavier in;
     memset(&in, 0, sizeof(in));
 
@@ -49,9 +51,8 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
         interface.Sac(true);
     }
 
-    creerSourceLumiere(world, 80, 80, 3);
-    creerSourceLumiere(world, 80, 120, 6);
-    appliquerLumiere(world);
+    //creerSourceLumiere(world, 80, 80, 3); Sources de lumière pour les tests
+    //creerSourceLumiere(world, 80, 120, 6);
 
     while (!in.key[SDLK_ESCAPE]) // Boucle principale
     {
@@ -215,6 +216,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
 
             tempsPersoActuel = SDL_GetTicks();
             tempsBlocActuel = SDL_GetTicks();
+            tempsJourActuel = SDL_GetTicks();
 
             if (Kevin.changerVie() <= 0 && modeJeu == 0)
             {
@@ -225,7 +227,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
             if (tempsPersoActuel - tempsPersoPrecedent >= 2000 && modeJeu == 0)
             {
                 Kevin.recupererPosition(&posPersoX, &posPersoY);
-                if(Kevin.changerVie()==100 || Kevin.changerFatigue() < 50)
+                if(Kevin.changerVie() == 100 || Kevin.changerFatigue() < 50)
                 {
                     Kevin.changerFatigue(10);
                 }
@@ -246,6 +248,13 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 tempsBlocPrecedent = tempsBlocActuel;
             }
 
+            /*if (tempsJourActuel - tempsJourPrecedent >= 42) // Ecoulement du temps, stoppé le temps que les fonctions de luminosité soit terminées
+            {
+                tempsJour += 10;
+
+                tempsJourPrecedent = tempsJourActuel;
+            }*/
+
             positionCurseur.x = in.sourisX;
             positionCurseur.y = in.sourisY;
 
@@ -255,7 +264,10 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
             3- Affichage des personnages
             4- Affichage des menus*/
 
-            bliterArrierePlan(ecran, camera, largeurFenetre, hauteurFenetre, world);
+            bliterArrierePlan(ecran, camera, largeurFenetre, hauteurFenetre, world, tempsJour);
+
+            appliquerLumiere(world, camera, largeurFenetre, hauteurFenetre);
+
             bliterEcran(ecran, world, camera, largeurFenetre, hauteurFenetre);
 
             if (modeJeu == 0) // Le personnage n'est afficher qu'en mode de jeu 0 (aventure)
