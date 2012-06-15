@@ -393,11 +393,11 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
                             {
                                 SDL_BlitSurface(casseUn, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
                             }
-                            else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 3)
+                            else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 2)
                             {
                                 SDL_BlitSurface(casseDeux, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
                             }
-                            else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 2)
+                            else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 3)
                             {
                                 SDL_BlitSurface(casseTrois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
                             }
