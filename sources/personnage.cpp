@@ -83,8 +83,8 @@ Camera Personnage::deplacerPersonnage(Portion_Map chunk[][PROFONDEUR_MONDE], dou
 
     sauter(saut, okSaut); // Saut
 
-    posTestX = (coorX + vitesseX) * 16;
-    posTestY = (coorY + vitesseY) * 16;
+    posTestX = (coorX + vitesseX) * TAILLE_BLOCK;
+    posTestY = (coorY + vitesseY) * TAILLE_BLOCK;
 
     if (posTestX > LARGEUR_MONDE * (LARGEUR_PARTIE_MAP - 1) * TAILLE_BLOCK || posTestY > PROFONDEUR_MONDE * (PROFONDEUR_PARTIE_MAP - 1) * TAILLE_BLOCK || posTestX < 0 || posTestY < 0) // Test de position (murs invisibles)
     {

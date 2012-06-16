@@ -359,9 +359,9 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
                     chunk[x][y].blocs[a][b].positionBloc.x -= camera.posCamX;
                     chunk[x][y].blocs[a][b].positionBloc.y -= camera.posCamY;
 
-                    if ((memX > camera.posCamX - (2 * TAILLE_BLOCK)) && (memX < (camera.posCamX + largeurFenetre) + (2 * TAILLE_BLOCK)))
+                    if ((memX > camera.posCamX - TAILLE_BLOCK) && (memX < (camera.posCamX + largeurFenetre) + TAILLE_BLOCK))
                     {
-                        if ((memY > camera.posCamY - (2 * TAILLE_BLOCK)) && (memY < (camera.posCamY + hauteurFenetre) + (2 * TAILLE_BLOCK)))
+                        if ((memY > camera.posCamY - TAILLE_BLOCK) && (memY < (camera.posCamY + hauteurFenetre) + TAILLE_BLOCK))
                         {
                             if (chunk[x][y].blocs[a][b].type == TERRE)
                                 SDL_BlitSurface(surfTerre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
@@ -886,9 +886,9 @@ void bliterArrierePlan(SDL_Surface *ecran, Camera camera, int largeurFenetre, in
 
             if ((chunkY * PROFONDEUR_PARTIE_MAP) + blocY > 54 && (chunkY * PROFONDEUR_PARTIE_MAP) + blocY <= 64 && world[chunkX][chunkY].blocs[blocX][blocY].type == AIR)
             {
-                if (x > camera.posCamX - (2 * TAILLE_BLOCK) && x < (camera.posCamX + largeurFenetre) + (2 * TAILLE_BLOCK))
+                if (x > camera.posCamX - TAILLE_BLOCK && x < (camera.posCamX + largeurFenetre) + TAILLE_BLOCK)
                 {
-                    if (y > camera.posCamY - (2 * TAILLE_BLOCK) && y < (camera.posCamY + hauteurFenetre) + (2 * TAILLE_BLOCK))
+                    if (y > camera.posCamY - TAILLE_BLOCK && y < (camera.posCamY + hauteurFenetre) + TAILLE_BLOCK)
                     {
                         SDL_BlitSurface(terreBackGround, NULL, ecran, &positionBloc);
                     }
@@ -1016,9 +1016,9 @@ void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE], Camera camera, int 
     {
         for (int y(3); y < PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP - 3; y++)
         {
-            if ((x * TAILLE_BLOCK > camera.posCamX - (2 * TAILLE_BLOCK)) && (x * TAILLE_BLOCK < (camera.posCamX + largeurFenetre) + (2 * TAILLE_BLOCK)))
+            if ((x * TAILLE_BLOCK > camera.posCamX - TAILLE_BLOCK) && (x * TAILLE_BLOCK < (camera.posCamX + largeurFenetre) + TAILLE_BLOCK))
             {
-                if ((y * TAILLE_BLOCK > camera.posCamY - (2 * TAILLE_BLOCK)) && (y * TAILLE_BLOCK < (camera.posCamY + hauteurFenetre) + (2 * TAILLE_BLOCK)))
+                if ((y * TAILLE_BLOCK > camera.posCamY - TAILLE_BLOCK) && (y * TAILLE_BLOCK < (camera.posCamY + hauteurFenetre) + TAILLE_BLOCK))
                 {
                     if (chunkType[x][y] != AIR && chunkType[x][y] != FEUILLE)
                     {

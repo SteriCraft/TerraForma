@@ -380,8 +380,8 @@ void InterfaceJeu::afficherInventaire(SDL_Surface *ecran, int largeurFenetre, in
     {
         for (int y(0); y < 8; y++)
         {
-            positionBloc.x = (x * TAILLE_BLOCK * 4.3) + (positionInventaire.x + 73);
-            positionBloc.y = (y * TAILLE_BLOCK * 3.4) + (positionInventaire.y + 130);
+            positionBloc.x = (x * 68.8) + (positionInventaire.x + 73);
+            positionBloc.y = (y * 54.4) + (positionInventaire.y + 130);
 
             if (inventaire[y][x] == AIR)
             {
@@ -489,8 +489,8 @@ void InterfaceJeu::afficherCompteurBlocInventaire(int largeurFenetre, int hauteu
                 SDL_FreeSurface(quantiteItemsPolice.texte);
                 quantiteItemsPolice.texte = TTF_RenderText_Blended(police, quantiteItems.c_str(), quantiteItemsPolice.couleurTexte);
 
-                quantiteItemsPolice.positionTexte.x = (y * TAILLE_BLOCK * 4.3) + (positionInventaire.x + 73) + 6;
-                quantiteItemsPolice.positionTexte.y = (x * TAILLE_BLOCK * 3.4) + (positionInventaire.y + 130) - 1;
+                quantiteItemsPolice.positionTexte.x = (x * 68.8) + (positionInventaire.x + 73) + 6;
+                quantiteItemsPolice.positionTexte.y = (x * 54.4) + (positionInventaire.y + 130) - 1;
 
                 SDL_BlitSurface(quantiteItemsPolice.texte, NULL, ecran, &quantiteItemsPolice.positionTexte);
             }

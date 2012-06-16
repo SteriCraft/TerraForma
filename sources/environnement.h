@@ -15,7 +15,7 @@
 #define PROFONDEUR_MONDE 5
 #define LARGEUR_PARTIE_MAP 32
 #define PROFONDEUR_PARTIE_MAP 32
-#define TAILLE_BLOCK 16
+#define TAILLE_BLOCK 32
 
 #define AIR 0
 #define HERBE 1
