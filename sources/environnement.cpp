@@ -208,7 +208,7 @@ Portion_Map mineraisAleatoiresChunk(Portion_Map chunk)
         {
             alea = rand() % 100000;
 
-            if (alea < 200 && alea > 160)
+            if (alea < 200 && alea > 140)
             {
                 chunk.blocs[x][y].type = CHARBON;
 
@@ -282,7 +282,7 @@ Portion_Map mineraisAleatoiresChunk(Portion_Map chunk)
                 }
             }
 
-            if (alea < 160 && alea > 150)
+            if (alea < 140 && alea > 100)
             {
                 chunk.blocs[x][y].type = FER;
 
@@ -684,8 +684,8 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
         }
     }
 
-    nombreCavernes = rand() % 4;
-    nombreCavernes += 2;
+    nombreCavernes = rand() % 6;
+    nombreCavernes += 4;
 
     while (nombreCavernes > 0)
     {
@@ -721,11 +721,11 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
 
                 mem = rand() % 3;
 
-                if (mem == 0 && epaisseur + 1 < 10)
+                if (mem == 0 && epaisseur + 1 <= 6)
                 {
                     epaisseur++;
                 }
-                else if (mem == 1 && epaisseur - 1 > 3)
+                else if (mem == 1 && epaisseur - 1 >= 3)
                 {
                     epaisseur--;
                 }
@@ -771,11 +771,11 @@ void generationCavernes(Portion_Map world[][PROFONDEUR_MONDE])
 
                 mem = rand() % 3;
 
-                if (mem == 0 && epaisseur + 1 < 10)
+                if (mem == 0 && epaisseur + 1 <= 6)
                 {
                     epaisseur++;
                 }
-                else if (mem == 1 && epaisseur - 1 > 3)
+                else if (mem == 1 && epaisseur - 1 >= 3)
                 {
                     epaisseur--;
                 }
@@ -919,7 +919,7 @@ void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
                 {
                     if (world[a][b].blocs[x][y].type == TERRE)
                     {
-                        if (world[a][b].blocs[x][y - 1].type == AIR)
+                        if (world[a][b].blocs[x][y - 1].type == AIR && world[a][b].blocs[x][y - 1].luminosite >= 7)
                         {
                             if (world[a][b].blocs[x][y].timer == 0)
                             {
@@ -936,7 +936,7 @@ void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
                             }
                         }
                     }
-                                        if (world[a][b].blocs[x][y].type == HERBE)
+                    else if (world[a][b].blocs[x][y].type == HERBE)
                     {
                         if (world[a][b].blocs[x][y - 1].type != AIR)
                         {
@@ -953,6 +953,10 @@ void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
                             {
                                 world[a][b].blocs[x][y].timer -= 1;
                             }
+                        }
+                        else
+                        {
+                            world[a][b].blocs[x][y].timer = 0;
                         }
                     }
                 }
@@ -993,7 +997,8 @@ void creerSourceLumiere(Portion_Map world[][PROFONDEUR_MONDE], int posX, int pos
 
 void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE], Camera camera, int largeurFenetre, int hauteurFenetre)
 {
-    int distance(0), chunkType[LARGEUR_MONDE * LARGEUR_PARTIE_MAP][PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP], somme(0);
+    int chunkType[LARGEUR_MONDE * LARGEUR_PARTIE_MAP][PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP], somme(0);
+    double distance(0);
     TestSourceLumiere chunk[LARGEUR_MONDE * LARGEUR_PARTIE_MAP][PROFONDEUR_MONDE * PROFONDEUR_PARTIE_MAP];
 
     for (int x(0); x < LARGEUR_MONDE; x++)
@@ -1039,6 +1044,7 @@ void appliquerLumiere(Portion_Map world[][PROFONDEUR_MONDE], Camera camera, int 
                                             somme++;
                                         }
                                     }
+
                                 }
                             }
 

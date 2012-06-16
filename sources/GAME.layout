@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="contactsEntitees.cpp" open="1" top="0" tabpos="30">
+	<File name="contactsEntitees.cpp" open="1" top="0" tabpos="39">
 		<Cursor position="687" topLine="0" />
 	</File>
-	<File name="contactsEntitees.h" open="1" top="0" tabpos="31">
+	<File name="contactsEntitees.h" open="1" top="0" tabpos="40">
 		<Cursor position="211" topLine="0" />
 	</File>
-	<File name="controlesCamera.cpp" open="1" top="0" tabpos="5">
+	<File name="controlesCamera.cpp" open="1" top="0" tabpos="14">
 		<Cursor position="12468" topLine="278" />
 	</File>
-	<File name="controlesCamera.h" open="1" top="0" tabpos="19">
+	<File name="controlesCamera.h" open="1" top="0" tabpos="28">
 		<Cursor position="296" topLine="0" />
 	</File>
-	<File name="environnement.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="12421" topLine="320" />
+	<File name="environnement.cpp" open="1" top="1" tabpos="22">
+		<Cursor position="42682" topLine="1025" />
 	</File>
-	<File name="environnement.h" open="1" top="0" tabpos="27">
+	<File name="environnement.h" open="1" top="0" tabpos="36">
 		<Cursor position="398" topLine="0" />
 	</File>
-	<File name="gestionMap.cpp" open="1" top="0" tabpos="12">
+	<File name="gestionMap.cpp" open="1" top="0" tabpos="21">
 		<Cursor position="3494" topLine="119" />
 	</File>
-	<File name="gestionMap.h" open="1" top="0" tabpos="26">
+	<File name="gestionMap.h" open="1" top="0" tabpos="35">
 		<Cursor position="25" topLine="0" />
 	</File>
-	<File name="interface.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="15045" topLine="455" />
+	<File name="interface.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="14671" topLine="455" />
 	</File>
-	<File name="interface.h" open="1" top="0" tabpos="21">
+	<File name="interface.h" open="1" top="0" tabpos="30">
 		<Cursor position="1688" topLine="37" />
 	</File>
-	<File name="joueur.cpp" open="1" top="0" tabpos="10">
+	<File name="joueur.cpp" open="1" top="0" tabpos="19">
 		<Cursor position="490" topLine="0" />
 	</File>
-	<File name="joueur.h" open="1" top="0" tabpos="24">
+	<File name="joueur.h" open="1" top="0" tabpos="33">
 		<Cursor position="125" topLine="0" />
 	</File>
-	<File name="lecteurFichier.cpp" open="1" top="0" tabpos="15">
+	<File name="lecteurFichier.cpp" open="1" top="0" tabpos="24">
 		<Cursor position="595" topLine="16" />
 	</File>
-	<File name="lecteurFichier.h" open="1" top="0" tabpos="29">
+	<File name="lecteurFichier.h" open="1" top="0" tabpos="38">
 		<Cursor position="330" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1">
+	<File name="main.cpp" open="1" top="0" tabpos="10">
 		<Cursor position="190" topLine="0" />
 	</File>
-	<File name="majClavier.cpp" open="1" top="0" tabpos="8">
+	<File name="majClavier.cpp" open="1" top="0" tabpos="17">
 		<Cursor position="146" topLine="16" />
 	</File>
-	<File name="majClavier.h" open="1" top="0" tabpos="22">
+	<File name="majClavier.h" open="1" top="0" tabpos="31">
 		<Cursor position="286" topLine="0" />
 	</File>
-	<File name="menuMaps.cpp" open="1" top="0" tabpos="3">
+	<File name="menuMaps.cpp" open="1" top="0" tabpos="12">
 		<Cursor position="1136" topLine="27" />
 	</File>
-	<File name="menuMaps.h" open="1" top="0" tabpos="17">
+	<File name="menuMaps.h" open="1" top="0" tabpos="26">
 		<Cursor position="25" topLine="0" />
 	</File>
-	<File name="menuMort.cpp" open="1" top="0" tabpos="6">
+	<File name="menuMort.cpp" open="1" top="0" tabpos="15">
 		<Cursor position="2270" topLine="21" />
 	</File>
-	<File name="menuMort.h" open="1" top="0" tabpos="20">
+	<File name="menuMort.h" open="1" top="0" tabpos="29">
 		<Cursor position="44" topLine="0" />
 	</File>
-	<File name="menuOptions.cpp" open="1" top="0" tabpos="4">
+	<File name="menuOptions.cpp" open="1" top="0" tabpos="13">
 		<Cursor position="9623" topLine="166" />
 	</File>
-	<File name="menuOptions.h" open="1" top="0" tabpos="18">
+	<File name="menuOptions.h" open="1" top="0" tabpos="27">
 		<Cursor position="130" topLine="0" />
 	</File>
-	<File name="menuPrincipal.cpp" open="1" top="0" tabpos="2">
+	<File name="menuPrincipal.cpp" open="1" top="0" tabpos="11">
 		<Cursor position="1665" topLine="36" />
 	</File>
-	<File name="menuPrincipal.h" open="1" top="0" tabpos="16">
+	<File name="menuPrincipal.h" open="1" top="0" tabpos="25">
 		<Cursor position="498" topLine="0" />
 	</File>
-	<File name="mobs.cpp" open="1" top="0" tabpos="11">
+	<File name="mobs.cpp" open="1" top="0" tabpos="20">
 		<Cursor position="38" topLine="0" />
 	</File>
-	<File name="mobs.h" open="1" top="0" tabpos="25">
+	<File name="mobs.h" open="1" top="0" tabpos="34">
 		<Cursor position="337" topLine="0" />
 	</File>
-	<File name="personnage.cpp" open="1" top="0" tabpos="9">
+	<File name="personnage.cpp" open="1" top="0" tabpos="18">
 		<Cursor position="3317" topLine="47" />
 	</File>
-	<File name="personnage.h" open="1" top="0" tabpos="23">
+	<File name="personnage.h" open="1" top="0" tabpos="32">
 		<Cursor position="311" topLine="10" />
 	</File>
-	<File name="tableParametresBloc.cpp" open="1" top="0" tabpos="14">
+	<File name="tableParametresBloc.cpp" open="1" top="0" tabpos="23">
 		<Cursor position="262" topLine="0" />
 	</File>
-	<File name="tableParametresBloc.h" open="1" top="0" tabpos="28">
+	<File name="tableParametresBloc.h" open="1" top="0" tabpos="37">
 		<Cursor position="278" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -303,7 +303,7 @@
 1338621315 c:\programmation\développement\game\pnj.h
 	"personnage.h"
 
-1339762444 source:c:\programmation\développement\game\interface.cpp
+1339857251 source:c:\programmation\développement\game\interface.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -370,4 +370,169 @@
 1339512726 c:\programmation\développement\game\contactsentitees.h
 	<vector>
 	"mobs.h"
+
+1339513512 source:e:\développement\game\contactsentitees.cpp
+	<vector>
+	<math.h>
+	"mobs.h"
+
+1339513148 e:\développement\game\mobs.h
+	"personnage.h"
+
+1339686550 e:\développement\game\personnage.h
+	<vector>
+	"controlesCamera.h"
+	"environnement.h"
+
+1339588504 e:\développement\game\controlescamera.h
+	<SDL/SDL.h>
+	<SDL_ttf.h>
+	"environnement.h"
+
+1339855376 e:\développement\game\environnement.h
+	<SDL/SDL.h>
+	"interface.h"
+
+1339762443 e:\développement\game\interface.h
+	<SDL_ttf.h>
+
+1339795320 source:e:\développement\game\controlescamera.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<math.h>
+	<vector>
+	"controlesCamera.h"
+	"environnement.h"
+	"joueur.h"
+	"majClavier.h"
+	"interface.h"
+	"menuMort.h"
+	"mobs.h"
+	"contactsEntitees.h"
+
+1339505846 e:\développement\game\joueur.h
+	"personnage.h"
+
+1339702675 e:\développement\game\majclavier.h
+	"controlesCamera.h"
+
+1339294730 e:\développement\game\menumort.h
+
+1339512726 e:\développement\game\contactsentitees.h
+	<vector>
+	"mobs.h"
+
+1339859075 source:e:\développement\game\environnement.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<time.h>
+	<math.h>
+	"environnement.h"
+	"interface.h"
+
+1339293234 source:e:\développement\game\gestionmap.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<SDL_ttf.h>
+	"gestionMap.h"
+	"controlesCamera.h"
+
+1339293360 e:\développement\game\gestionmap.h
+	<SDL_ttf.h>
+	"environnement.h"
+
+1339857251 source:e:\développement\game\interface.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<string>
+	"interface.h"
+	"menuPrincipal.h"
+	"environnement.h"
+	"menuOptions.h"
+
+1338930120 e:\développement\game\menuprincipal.h
+	<SDL_ttf.h>
+
+1338930130 e:\développement\game\menuoptions.h
+	<string>
+
+1339505932 source:e:\développement\game\joueur.cpp
+	"joueur.h"
+
+1339083772 source:e:\développement\game\lecteurfichier.cpp
+	<iostream>
+	<fstream>
+	<string>
+	"lecteurFichier.h"
+
+1338930226 e:\développement\game\lecteurfichier.h
+
+1339750863 source:e:\développement\game\main.cpp
+	<SDL/SDL.h>
+	<SDL_ttf.h>
+	<time.h>
+	"controlesCamera.h"
+	"menuPrincipal.h"
+	"menuMaps.h"
+	"lecteurFichier.h"
+
+1339091186 e:\développement\game\menumaps.h
+
+1339703213 source:e:\développement\game\majclavier.cpp
+	<SDL/SDL.h>
+	"majClavier.h"
+
+1339669557 source:e:\développement\game\menumaps.cpp
+	<SDL_image.h>
+	"menuPrincipal.h"
+	"menuMaps.h"
+	"majClavier.h"
+	"gestionMap.h"
+
+1339702816 source:e:\développement\game\menumort.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	"menuMort.h"
+	"menuPrincipal.h"
+	"majClavier.h"
+
+1339702828 source:e:\développement\game\menuoptions.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<string>
+	<sstream>
+	"menuOptions.h"
+	"menuPrincipal.h"
+	"majClavier.h"
+	"lecteurFichier.h"
+
+1339750711 source:e:\développement\game\menuprincipal.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	"menuPrincipal.h"
+	"menuOptions.h"
+	"controlesCamera.h"
+	"majClavier.h"
+
+1339513140 source:e:\développement\game\mobs.cpp
+	"mobs.h"
+
+1339856556 source:e:\développement\game\personnage.cpp
+	<SDL/SDL.h>
+	<SDL_image.h>
+	"personnage.h"
+	"environnement.h"
+	"controlesCamera.h"
+	"tableParametresBloc.h"
+
+1339626307 e:\développement\game\tableparametresbloc.h
+
+1339625765 source:e:\développement\game\tableparametresbloc.cpp
+	"environnement.h"
 
