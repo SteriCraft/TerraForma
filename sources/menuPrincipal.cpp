@@ -8,6 +8,8 @@
 #include <SDL/SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <fmod.h>
+
 #include "menuPrincipal.h"
 #include "menuOptions.h"
 #include "controlesCamera.h"
@@ -15,6 +17,22 @@
 
 int selectionMenu(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int hauteurFenetre)
 {
+    FMOD_SYSTEM *system;
+    FMOD_System_Create(&system);
+    FMOD_System_Init(system, 32, FMOD_INIT_NORMAL, NULL);
+
+    FMOD_SOUND *clic(NULL), *musique(NULL);
+    FMOD_System_CreateSound(system, "sons/interface/clicMenu.wma", FMOD_CREATESAMPLE, 0, &clic);
+
+    FMOD_System_CreateSound(system, "sons/interface/musiqueMenu.wma", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM | FMOD_LOOP_NORMAL, 0, &musique);
+
+    FMOD_CHANNEL *channel;
+    FMOD_System_GetChannel(system, 2, &channel);
+
+    FMOD_Sound_SetLoopCount(musique, -1);
+
+    FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, musique, 0, NULL);
+
     SDL_Surface *fondEcran(IMG_Load("textures/interface/fondMenu.png"));
     SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
     SDL_Surface *modeAventure(IMG_Load("textures/interface/btn_aventure.png"));
@@ -64,22 +82,30 @@ int selectionMenu(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int 
         {
             if ((in.sourisX > positionOptions.x) && (in.sourisX < (positionOptions.x + 250)) && (in.sourisY > positionOptions.y) && (in.sourisY < (positionOptions.y + 65)))
             {
+                FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, clic, 0, NULL);
+                SDL_Delay(800);
                 menuOptions(ecran, police, largeurFenetre, hauteurFenetre);
                 choixMenu = 4;
             }
 
             else if ((in.sourisX > positionModeAventure.x) && (in.sourisX < (positionModeAventure.x + 250)) && (in.sourisY > positionModeAventure.y) && (in.sourisY < (positionModeAventure.y + 65)))
             {
+                FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, clic, 0, NULL);
+                SDL_Delay(800);
                 choixMenu = AVENTURE;
             }
 
             else if ((in.sourisX > positionModeLibre.x) && (in.sourisX < (positionModeLibre.x + 250)) && (in.sourisY > positionModeLibre.y) && (in.sourisY < (positionModeLibre.y + 65)))
             {
+                FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, clic, 0, NULL);
+                SDL_Delay(800);
                 choixMenu = LIBRE;
             }
 
             else if ((in.sourisX > positionQuitter.x) && (in.sourisX < (positionQuitter.x + 250)) && (in.sourisY > positionQuitter.y) && (in.sourisY < (positionQuitter.y + 65)))
             {
+                FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, clic, 0, NULL);
+                SDL_Delay(800);
                 choixMenu = 3;
             }
         }
@@ -122,6 +148,10 @@ int selectionMenu(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int 
     SDL_FreeSurface(options);
     SDL_FreeSurface(quitter);
     SDL_FreeSurface(credits);
+
+    FMOD_Sound_Release(clic);
+    FMOD_System_Close(system);
+    FMOD_System_Release(system);
 
     return choixMenu; // Renvoi du choix sous la forme d'un int (voir déclaration des variables plus haut)
 }

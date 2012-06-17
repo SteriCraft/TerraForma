@@ -2,7 +2,7 @@
            ### - PROJET GAME / environnement.h - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 15/06/2012
+      Date du fichier: 17/06/2012
 */
 
 #ifndef DEF_ENVIRONNEMENT_H

@@ -16,8 +16,8 @@
 	<File name="environnement.cpp" open="1" top="0" tabpos="13">
 		<Cursor position="37766" topLine="907" />
 	</File>
-	<File name="environnement.h" open="1" top="1" tabpos="27">
-		<Cursor position="402" topLine="0" />
+	<File name="environnement.h" open="1" top="0" tabpos="27">
+		<Cursor position="398" topLine="0" />
 	</File>
 	<File name="gestionMap.cpp" open="1" top="0" tabpos="12">
 		<Cursor position="3494" topLine="119" />
@@ -70,11 +70,11 @@
 	<File name="menuOptions.h" open="1" top="0" tabpos="18">
 		<Cursor position="130" topLine="0" />
 	</File>
-	<File name="menuPrincipal.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="148" topLine="0" />
+	<File name="menuPrincipal.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="348" topLine="0" />
 	</File>
 	<File name="menuPrincipal.h" open="1" top="0" tabpos="16">
-		<Cursor position="498" topLine="0" />
+		<Cursor position="232" topLine="0" />
 	</File>
 	<File name="mobs.cpp" open="1" top="0" tabpos="11">
 		<Cursor position="38" topLine="0" />

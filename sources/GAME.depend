@@ -389,7 +389,7 @@
 	<SDL_ttf.h>
 	"environnement.h"
 
-1339855376 e:\développement\game\environnement.h
+1339955331 e:\développement\game\environnement.h
 	<SDL/SDL.h>
 	"interface.h"
 
@@ -511,10 +511,11 @@
 	"majClavier.h"
 	"lecteurFichier.h"
 
-1339927183 source:e:\développement\game\menuprincipal.cpp
+1339955873 source:e:\développement\game\menuprincipal.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
+	<fmod.h>
 	"menuPrincipal.h"
 	"menuOptions.h"
 	"controlesCamera.h"
