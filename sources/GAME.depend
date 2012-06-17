@@ -511,7 +511,7 @@
 	"majClavier.h"
 	"lecteurFichier.h"
 
-1339926762 source:e:\développement\game\menuprincipal.cpp
+1339927183 source:e:\développement\game\menuprincipal.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>

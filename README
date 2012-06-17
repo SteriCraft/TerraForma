@@ -17,6 +17,19 @@ Pour compiler sous Windows
 -> Compiler le projet Code::Blocks fournit avec les sources
 
 
+Pour ajouter un bloc:
+
+Mettre à jour les defines dans environnement.h
+Mettre à jour bliterEcran() dans environnement.cpp
+Mettre à jour modifierBloc() dans environnement.cpp
+Mettre à jour le constructeur dans interface.cpp
+Mettre à jour le destructeur dans interface.cpp
+Mettre à jour chargerTexturesItems() dans interface.cpp
+Mettre à jour afficherInventaire() dans interface.cpp
+Mettre à jour ajouterEnleverBlocInventaire() dans interface.cpp
+Mettre à jour interface.h
+
+
 EQUIPE:
 
 SteriCraft -> Programmation C++, manipulation du projet sous Windows

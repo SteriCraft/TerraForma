@@ -17,6 +17,18 @@
 #define PROFONDEUR_PARTIE_MAP 32
 #define TAILLE_BLOCK 32
 
+/*
+Pour ajouter un nouveau bloc, mettre à jour les defines dans environnement.h
+Mettre à jour bliterEcran dans environnement.cpp
+Mettre à jour modifierBloc dans environnement.cpp
+Mettre à jour le constructeur dans interface.cpp
+Mettre à jour le destructeur dans interface.cpp
+Mettre à jour chargerTexturesItems dans interface.cpp
+Mettre à jour afficherInventaire dans interface.cpp
+Mettre à jour ajouterEnleverBlocInventaire dans interface.cpp
+Mettre à jour interface.h
+*/
+
 #define AIR 0
 #define HERBE 1
 #define TERRE 2
