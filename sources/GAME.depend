@@ -396,7 +396,7 @@
 1339762443 e:\développement\game\interface.h
 	<SDL_ttf.h>
 
-1339795320 source:e:\développement\game\controlescamera.cpp
+1339869535 source:e:\développement\game\controlescamera.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -423,7 +423,7 @@
 	<vector>
 	"mobs.h"
 
-1339859075 source:e:\développement\game\environnement.cpp
+1339869372 source:e:\développement\game\environnement.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<time.h>
@@ -500,7 +500,7 @@
 	"menuPrincipal.h"
 	"majClavier.h"
 
-1339702828 source:e:\développement\game\menuoptions.cpp
+1339927118 source:e:\développement\game\menuoptions.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
@@ -511,7 +511,7 @@
 	"majClavier.h"
 	"lecteurFichier.h"
 
-1339750711 source:e:\développement\game\menuprincipal.cpp
+1339926762 source:e:\développement\game\menuprincipal.cpp
 	<SDL/SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>

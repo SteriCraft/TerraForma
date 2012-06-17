@@ -2,7 +2,7 @@
            ### - PROJET GAME / menuOptions.cpp - ###
 
                Auteur: Gianni LADISA--LECLERCQ
-      Date du fichier: 05/06/2012
+      Date du fichier: 17/06/2012
 */
 
 #include <SDL/SDL.h>
@@ -19,7 +19,7 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
 {
     Police okReso, resoX, resoY, resoSeparateur, annuler, avertissementReso, decalGauche, decalDroit, fullScreen; // Variables globales au fichier, préparant les polices
 
-    SDL_Surface *fondEcran(IMG_Load("textures/interface/backGround.png"));
+    SDL_Surface *fondEcran(IMG_Load("textures/interface/fondMenu.png"));
     SDL_Surface *curseur(IMG_Load("textures/interface/curseur.png"));
 
     int listeResolutionX[6] = {800, 1280, 1366, 1440, 1680, 1920};
@@ -35,8 +35,8 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
 
     SDL_Rect positionCurseur;
     SDL_Rect positionFondEcran;
-    positionFondEcran.x = 0;
-    positionFondEcran.y = 0;
+    positionFondEcran.x = largeurFenetre / 2 - 400;
+    positionFondEcran.y = hauteurFenetre / 2 - 300;
 
     ReceptionClavier in;
     memset(&in, 0, sizeof(in));
@@ -214,18 +214,8 @@ void menuOptions(SDL_Surface *ecran, TTF_Font *police, int largeurFenetre, int h
             SDL_FreeSurface(fullScreen.texte);
             fullScreen.texte = TTF_RenderText_Blended(police, "Plein écran", fullScreen.couleurTexte);
 
-            SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0)); // Effacement de l'écran et affichage des surfaces
-
-            for (int x(0); x < largeurFenetre; x += fondEcran->w)
-            {
-                for (int y(0); y < hauteurFenetre; y += fondEcran->h)
-                {
-                    positionFondEcran.x = x;
-                    positionFondEcran.y = y;
-                    SDL_BlitSurface(fondEcran, NULL, ecran, &positionFondEcran);
-                }
-            }
-
+            SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 67, 108, 155)); // Effacement de l'écran et affichage des surfaces
+            SDL_BlitSurface(fondEcran, NULL, ecran, &positionFondEcran);
             SDL_BlitSurface(okReso.texte, NULL, ecran, &okReso.positionTexte);
             SDL_BlitSurface(resoX.texte, NULL, ecran, &resoX.positionTexte);
             SDL_BlitSurface(resoY.texte, NULL, ecran, &resoY.positionTexte);

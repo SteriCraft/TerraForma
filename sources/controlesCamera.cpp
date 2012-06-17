@@ -241,7 +241,7 @@ void controlesCamera(SDL_Surface *ecran, int modeJeu, int largeurFenetre, int ha
                 tempsPersoPrecedent = tempsPersoActuel;
             }
 
-            if (tempsBlocActuel - tempsBlocPrecedent >= 2000)
+            if (tempsBlocActuel - tempsBlocPrecedent >= 1000)
             {
                 majTerre(world);
 

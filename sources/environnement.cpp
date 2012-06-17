@@ -363,47 +363,50 @@ void bliterEcran(SDL_Surface *ecran, Portion_Map chunk[][PROFONDEUR_MONDE], Came
                     {
                         if ((memY > camera.posCamY - TAILLE_BLOCK) && (memY < (camera.posCamY + hauteurFenetre) + TAILLE_BLOCK))
                         {
-                            if (chunk[x][y].blocs[a][b].type == TERRE)
-                                SDL_BlitSurface(surfTerre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-
-                            else if (chunk[x][y].blocs[a][b].type == HERBE)
-                                SDL_BlitSurface(surfHerbe, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-
-                            else if (chunk[x][y].blocs[a][b].type == PIERRE)
-                                SDL_BlitSurface(surfPierre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-
-                            else if (chunk[x][y].blocs[a][b].type == CHARBON)
-                                SDL_BlitSurface(surfCharbon, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-
-                            else if (chunk[x][y].blocs[a][b].type == FER)
-                                SDL_BlitSurface(surfFer, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-
-                            else if (chunk[x][y].blocs[a][b].type == BOIS)
-                                SDL_BlitSurface(surfBois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-
-                            else if (chunk[x][y].blocs[a][b].type == BOIS_NATUREL)
-                                SDL_BlitSurface(surfBoisNaturel, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-
-                            else if (chunk[x][y].blocs[a][b].type == FEUILLE)
-                                SDL_BlitSurface(surfFeuille, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-
-                            if (chunk[x][y].blocs[a][b].casse == 0)
-                            {}
-                            else if (chunk[x][y].blocs[a][b].casse < chunk[x][y].blocs[a][b].casseMax / 4)
+                            if (chunk[x][y].blocs[a][b].luminosite != 0)
                             {
-                                SDL_BlitSurface(casseUn, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                            }
-                            else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 2)
-                            {
-                                SDL_BlitSurface(casseDeux, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                            }
-                            else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 3)
-                            {
-                                SDL_BlitSurface(casseTrois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
-                            }
-                            else if (chunk[x][y].blocs[a][b].casse <= chunk[x][y].blocs[a][b].casseMax)
-                            {
-                                SDL_BlitSurface(casseQuatre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                if (chunk[x][y].blocs[a][b].type == TERRE)
+                                    SDL_BlitSurface(surfTerre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                                else if (chunk[x][y].blocs[a][b].type == HERBE)
+                                    SDL_BlitSurface(surfHerbe, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                                else if (chunk[x][y].blocs[a][b].type == PIERRE)
+                                    SDL_BlitSurface(surfPierre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                                else if (chunk[x][y].blocs[a][b].type == CHARBON)
+                                    SDL_BlitSurface(surfCharbon, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                                else if (chunk[x][y].blocs[a][b].type == FER)
+                                    SDL_BlitSurface(surfFer, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                                else if (chunk[x][y].blocs[a][b].type == BOIS)
+                                    SDL_BlitSurface(surfBois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                                else if (chunk[x][y].blocs[a][b].type == BOIS_NATUREL)
+                                    SDL_BlitSurface(surfBoisNaturel, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                                else if (chunk[x][y].blocs[a][b].type == FEUILLE)
+                                    SDL_BlitSurface(surfFeuille, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+
+                                if (chunk[x][y].blocs[a][b].casse == 0)
+                                {}
+                                else if (chunk[x][y].blocs[a][b].casse < chunk[x][y].blocs[a][b].casseMax / 4)
+                                {
+                                    SDL_BlitSurface(casseUn, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                }
+                                else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 2)
+                                {
+                                    SDL_BlitSurface(casseDeux, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                }
+                                else if (chunk[x][y].blocs[a][b].casse < (chunk[x][y].blocs[a][b].casseMax / 4) * 3)
+                                {
+                                    SDL_BlitSurface(casseTrois, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                }
+                                else if (chunk[x][y].blocs[a][b].casse <= chunk[x][y].blocs[a][b].casseMax)
+                                {
+                                    SDL_BlitSurface(casseQuatre, NULL, ecran, &chunk[x][y].blocs[a][b].positionBloc);
+                                }
                             }
 
                             if (chunk[x][y].blocs[a][b].type != AIR)
@@ -917,6 +920,11 @@ void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
             {
                 for (int y(1); y < PROFONDEUR_PARTIE_MAP - 1; y++)
                 {
+                    if (world[a][b].blocs[x][y].casse > 0)
+                    {
+                        world[a][b].blocs[x][y].casse--;
+                    }
+
                     if (world[a][b].blocs[x][y].type == TERRE)
                     {
                         if (world[a][b].blocs[x][y - 1].type == AIR && world[a][b].blocs[x][y - 1].luminosite >= 7)
@@ -953,10 +961,6 @@ void majTerre(Portion_Map world[][PROFONDEUR_MONDE])
                             {
                                 world[a][b].blocs[x][y].timer -= 1;
                             }
-                        }
-                        else
-                        {
-                            world[a][b].blocs[x][y].timer = 0;
                         }
                     }
                 }
